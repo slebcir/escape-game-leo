@@ -1,12 +1,12 @@
-/* Custom Styles for Virtual Smartphone OS */
+/* Custom Styles for Virtual Smartphone OS - Fix Instagram & Pong */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  background-color: #0f172a; /* Slate 900 outside phone */
+  background-color: #090d16;
 }
 
 /* Hide scrollbars while keeping scroll functionality */
@@ -47,15 +47,37 @@ body {
   box-shadow: inset 0 0 2px rgba(255,255,255,0.2);
 }
 
+/* Home Screen Carousel */
+#home-carousel-wrapper {
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+  position: relative;
+  touch-action: pan-y;
+}
+
+#home-carousel {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.home-page {
+  width: 50%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
 /* App Transition Animations */
 .app-screen {
-  animation: appOpen 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: appOpen 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes appOpen {
   from {
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.94);
   }
   to {
     opacity: 1;
@@ -63,50 +85,53 @@ body {
   }
 }
 
-/* Chat bubble triangles */
-.bubble-incoming::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -8px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid #ffffff;
-  border-left: 8px solid transparent;
+/* Instagram Image Fixes */
+.insta-post-img {
+  width: 100%;
+  max-width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
 }
 
-.bubble-outgoing::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: -8px;
-  width: 0;
-  height: 0;
-  border-top: 8px solid #dcf8c6; /* WhatsApp outgoing green */
-  border-right: 8px solid transparent;
+/* Chrome Dropdown Menu */
+#chrome-menu-dropdown {
+  animation: fadeInDown 0.15s ease-out forwards;
 }
 
-.sms-outgoing::after {
-  border-top-color: #3b82f6; /* iMessage blue */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Wallpaper overlay gradients */
-.wallpaper-overlay {
-  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.15), transparent 40%);
+/* Instagram Story Fullscreen Overlay */
+#insta-story-modal {
+  animation: storyZoom 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Custom glassmorphism touch */
-.glass-header {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+@keyframes storyZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.glass-header-dark {
-  background: rgba(15, 23, 42, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+/* Glassmorphism utilities */
+.glass-dock {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 /* Pulsing Badge Effect */
@@ -116,5 +141,12 @@ body {
 }
 
 .badge-pulse {
-  animation: pulse-subtle 2s infinite ease-in-out;
+  animation: pulse-subtle 2.5s infinite ease-in-out;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
