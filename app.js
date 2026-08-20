@@ -1,5 +1,5 @@
 /**
- * Smartphone Virtuel de Léo - Application SPA Logic (Notification Center & Chrome Hardening)
+ * Smartphone Virtuel de Léo - Application SPA Logic (Assets Locaux & Enrichissement)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dot1) dot1.addEventListener('click', () => goToPage(1));
   if (dot2) dot2.addEventListener('click', () => goToPage(2));
 
-  // GESTION DU SWIPE SUR L'ÉCRAN D'ACCUEIL
+  // GESTION DU SWIPE
   let touchStartX = 0;
   let touchStartY = 0;
   let isMouseDown = false;
@@ -194,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (appName === 'messages') {
       document.getElementById('msg-chat-list')?.classList.remove('hidden');
       document.getElementById('msg-chat-detail')?.classList.add('hidden');
+    } else if (appName === 'photos') {
+      document.getElementById('photos-modal-view')?.classList.add('hidden');
     }
   }
 
@@ -260,7 +262,144 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 5. INSTAGRAM (STORY PAMPLEMOUSSE - COMPORTEMENT 1)
+  // 5. WHATSAPP : DISCUSSIONS DYNAMIQUES AVEC AVATARS LOCAUX
+  // -------------------------------------------------------------
+  const waChatItems = document.querySelectorAll('.wa-chat-item');
+  const waChatList = document.getElementById('wa-chat-list');
+  const waChatDetail = document.getElementById('wa-chat-detail');
+  const waBackToList = document.getElementById('wa-back-to-list');
+  const waContactName = document.getElementById('wa-contact-name');
+  const waMessagesContainer = document.getElementById('wa-messages-container');
+
+  const waData = {
+    sofiane: {
+      name: "Sofiane (Boxe 🥊)",
+      messages: [
+        { time: "13:40", sender: "Sofiane", text: "Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !", incoming: true },
+        { time: "13:45", sender: "Léo", text: "Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.", incoming: false }
+      ]
+    },
+    family: {
+      name: "La Mif ❤️",
+      messages: [
+        { time: "12:15", sender: "Papa", text: "Léo, pense à sortir la poubelle jaune avant 19h stp.", incoming: true },
+        { time: "12:18", sender: "Léo", text: "C'est bon c'est fait.", incoming: false },
+        { time: "12:30", sender: "Maman", text: "N'oublie pas ton blouson demain matin, il gèle !", incoming: true }
+      ]
+    },
+    lea: {
+      name: "Léa (Classe 3ème B)",
+      messages: [
+        { time: "18:10", sender: "Léa", text: "T'as compris l'exo 3 de physique ? C'est trop dur la loi d'Ohm...", incoming: true },
+        { time: "18:14", sender: "Léo", text: "Rien capté du tout, je vais recopier sur Thomas avant la sonnerie haha", incoming: false }
+      ]
+    },
+    maxime: {
+      name: "Maxime 🎮",
+      messages: [
+        { time: "20:45", sender: "Maxime", text: "T'es co ce soir ?", incoming: true },
+        { time: "20:48", sender: "Léo", text: "Ouais vers 21h après le dîner, faut qu'on monte de rang !", incoming: false }
+      ]
+    }
+  };
+
+  waChatItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const chatId = item.getAttribute('data-chat');
+      const chat = waData[chatId];
+      if (!chat) return;
+
+      if (waContactName) waContactName.textContent = chat.name;
+      if (waMessagesContainer) {
+        waMessagesContainer.innerHTML = chat.messages.map(msg => `
+          <div class="flex flex-col ${msg.incoming ? 'items-start max-w-[82%]' : 'items-end ml-auto max-w-[82%]' }">
+            <div class="relative ${msg.incoming ? 'bg-[#202c33] text-slate-100' : 'bg-[#005c4b] text-white'} p-2.5 rounded-lg shadow-xs">
+              <span class="text-[10px] font-bold text-emerald-400 block mb-0.5">${msg.sender}</span>
+              <p class="leading-relaxed text-xs">${msg.text}</p>
+              <span class="text-[9px] text-slate-400 block text-right mt-1">${msg.time}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      waChatList?.classList.add('hidden');
+      waChatDetail?.classList.remove('hidden');
+      waChatDetail?.classList.add('flex');
+      appSubState['whatsapp'] = 'subview';
+      updateBackBtnLabel('whatsapp', 'Discussions');
+    });
+  });
+
+  if (waBackToList) waBackToList.addEventListener('click', () => resetAppToRoot('whatsapp'));
+
+  // -------------------------------------------------------------
+  // 6. MESSAGES / SMS : DISCUSSIONS AVEC maman.jpg
+  // -------------------------------------------------------------
+  const msgChatItems = document.querySelectorAll('.msg-chat-item');
+  const msgChatList = document.getElementById('msg-chat-list');
+  const msgChatDetail = document.getElementById('msg-chat-detail');
+  const msgBackToList = document.getElementById('msg-back-to-list');
+  const msgMessagesContainer = document.getElementById('msg-messages-container');
+  const msgContactName = document.getElementById('msg-contact-name');
+
+  const msgData = {
+    maman: {
+      name: "Maman ❤️",
+      messages: [
+        { time: "12:10", sender: "Léo", text: "Maman, avec les potes on a vu un perceur en ville, je peux me faire percer le lobe de l'oreille ce week-end stp ??", incoming: false },
+        { time: "12:15", sender: "Maman", text: "Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée au lycée, mais pas avant. On en reparle calmement ce soir à la maison.", incoming: true }
+      ]
+    },
+    orange: {
+      name: "Orange Info Conso",
+      messages: [
+        { time: "Hier", sender: "Orange", text: "Info Conso : Il vous reste 12,4 Go d'Internet sur votre forfait pour le mois en cours.", incoming: true }
+      ]
+    },
+    vinted_livraison: {
+      name: "Chronopost Relay",
+      messages: [
+        { time: "08 Mai", sender: "Chronopost", text: "Votre colis n°FR-883921 est disponible au Point Relais Épicerie Centrale.", incoming: true }
+      ]
+    },
+    epic: {
+      name: "Epic Games",
+      messages: [
+        { time: "02 Mai", sender: "Epic Games", text: "Code de sécurité pour votre compte : 482-190 (valable 10 minutes).", incoming: true }
+      ]
+    }
+  };
+
+  msgChatItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const chatId = item.getAttribute('data-chat');
+      const chat = msgData[chatId];
+      if (!chat) return;
+
+      if (msgContactName) msgContactName.textContent = chat.name;
+      if (msgMessagesContainer) {
+        msgMessagesContainer.innerHTML = chat.messages.map(msg => `
+          <div class="flex flex-col ${msg.incoming ? 'items-start max-w-[80%]' : 'items-end ml-auto max-w-[80%]' }">
+            <div class="${msg.incoming ? 'bg-slate-200 text-slate-900' : 'bg-blue-500 text-white'} rounded-2xl p-2.5">
+              <p class="text-xs">${msg.text}</p>
+            </div>
+            <span class="text-[9px] text-slate-400 mt-1">${msg.time}</span>
+          </div>
+        `).join('');
+      }
+
+      msgChatList?.classList.add('hidden');
+      msgChatDetail?.classList.remove('hidden');
+      msgChatDetail?.classList.add('flex');
+      appSubState['messages'] = 'subview';
+      updateBackBtnLabel('messages', 'SMS');
+    });
+  });
+
+  if (msgBackToList) msgBackToList.addEventListener('click', () => resetAppToRoot('messages'));
+
+  // -------------------------------------------------------------
+  // 7. INSTAGRAM : STORIES & OVERLAY MODAL
   // -------------------------------------------------------------
   const instaStoryItems = document.querySelectorAll('.insta-story-item');
   const instaStoryModal = document.getElementById('insta-story-modal');
@@ -283,82 +422,34 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 6. WHATSAPP (SOFIANE - BOXE THAÏ - COMPORTEMENT 2)
+  // 8. GALERIE PHOTOS : VISUALISEUR D'IMAGE PLEIN ÉCRAN
   // -------------------------------------------------------------
-  const waChatItems = document.querySelectorAll('.wa-chat-item');
-  const waChatList = document.getElementById('wa-chat-list');
-  const waChatDetail = document.getElementById('wa-chat-detail');
-  const waBackToList = document.getElementById('wa-back-to-list');
-  const waContactName = document.getElementById('wa-contact-name');
-  const waMessagesContainer = document.getElementById('wa-messages-container');
+  const photoCards = document.querySelectorAll('.photo-card');
+  const photosModalView = document.getElementById('photos-modal-view');
+  const photoModalImg = document.getElementById('photo-modal-img');
+  const photoModalCaption = document.getElementById('photo-modal-caption');
+  const photoCloseModal = document.getElementById('photo-close-modal');
 
-  waChatItems.forEach(item => {
-    item.addEventListener('click', () => {
-      if (waMessagesContainer) {
-        waMessagesContainer.innerHTML = `
-          <div class="flex flex-col items-start max-w-[82%]">
-            <div class="bg-[#202c33] text-slate-100 p-2.5 rounded-lg">
-              <p class="leading-relaxed">Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !</p>
-              <span class="text-[9px] text-slate-400 block text-right mt-1">13:40</span>
-            </div>
-          </div>
-          <div class="flex flex-col items-end ml-auto max-w-[82%]">
-            <div class="bg-[#005c4b] text-white p-2.5 rounded-lg">
-              <p class="leading-relaxed">Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.</p>
-              <span class="text-[9px] text-slate-400 block text-right mt-1">13:45</span>
-            </div>
-          </div>
-        `;
-      }
-      waChatList?.classList.add('hidden');
-      waChatDetail?.classList.remove('hidden');
-      waChatDetail?.classList.add('flex');
-      appSubState['whatsapp'] = 'subview';
-      updateBackBtnLabel('whatsapp', 'Discussions');
+  photoCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const imgSrc = card.getAttribute('data-img');
+      const caption = card.getAttribute('data-caption');
+      if (photoModalImg) photoModalImg.src = imgSrc;
+      if (photoModalCaption) photoModalCaption.textContent = caption || "Photo";
+
+      photosModalView?.classList.remove('hidden');
+      photosModalView?.classList.add('flex');
+      appSubState['photos'] = 'subview';
+      updateBackBtnLabel('photos', 'Galerie');
     });
   });
 
-  if (waBackToList) waBackToList.addEventListener('click', () => resetAppToRoot('whatsapp'));
+  if (photoCloseModal) {
+    photoCloseModal.addEventListener('click', () => resetAppToRoot('photos'));
+  }
 
   // -------------------------------------------------------------
-  // 7. MESSAGES / SMS (MAMAN - PIERCING - COMPORTEMENT 3)
-  // -------------------------------------------------------------
-  const msgChatItems = document.querySelectorAll('.msg-chat-item');
-  const msgChatList = document.getElementById('msg-chat-list');
-  const msgChatDetail = document.getElementById('msg-chat-detail');
-  const msgBackToList = document.getElementById('msg-back-to-list');
-  const msgMessagesContainer = document.getElementById('msg-messages-container');
-
-  msgChatItems.forEach(item => {
-    item.addEventListener('click', () => {
-      if (msgMessagesContainer) {
-        msgMessagesContainer.innerHTML = `
-          <div class="flex flex-col items-end ml-auto max-w-[80%]">
-            <div class="bg-blue-500 text-white rounded-2xl p-2.5">
-              <p class="text-xs">Maman, avec les potes on a vu un perceur en ville, je peux me faire percer le lobe de l'oreille ce week-end stp ??</p>
-            </div>
-            <span class="text-[9px] text-slate-400 mt-1">12:10</span>
-          </div>
-          <div class="flex flex-col items-start max-w-[80%]">
-            <div class="bg-slate-200 text-slate-900 rounded-2xl p-2.5">
-              <p class="text-xs">Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée au lycée, mais pas avant. On en reparle calmement ce soir à la maison.</p>
-            </div>
-            <span class="text-[9px] text-slate-400 mt-1">12:15</span>
-          </div>
-        `;
-      }
-      msgChatList?.classList.add('hidden');
-      msgChatDetail?.classList.remove('hidden');
-      msgChatDetail?.classList.add('flex');
-      appSubState['messages'] = 'subview';
-      updateBackBtnLabel('messages', 'SMS');
-    });
-  });
-
-  if (msgBackToList) msgBackToList.addEventListener('click', () => resetAppToRoot('messages'));
-
-  // -------------------------------------------------------------
-  // 8. MINI-JEU PONG JOUABLE EN CANVAS HTML5
+  // 9. MINI-JEU PONG JOUABLE EN CANVAS HTML5
   // -------------------------------------------------------------
   const canvas = document.getElementById('pongCanvas');
   const pongStartBtn = document.getElementById('pong-start-btn');
