@@ -21,7 +21,9 @@
             spotify: '#1DB954',
             discord: '#5865F2',
             vinted: '#09B1BA',
-            tiktok: '#00F2FE'
+            tiktok: '#00F2FE',
+            messenger: '#0084FF',
+            pronote: '#1e3a8a'
           }
         }
       }
@@ -63,6 +65,45 @@
       </div>
     </div>
 
+    <!-- BANNIÈRE DE NOTIFICATION PUSH (COMPORTEMENT 9 - TENNIS THOMAS) -->
+    <div id="push-notification-banner" class="push-banner absolute top-9 inset-x-3 bg-slate-900/95 border border-amber-400/50 rounded-2xl p-3 shadow-2xl z-50 text-white cursor-pointer hover:bg-slate-800 transition flex items-start gap-3 backdrop-blur-md">
+      <div class="p-2 bg-amber-500 rounded-xl text-slate-950 flex-shrink-0">
+        <i data-lucide="bell" class="w-5 h-5"></i>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex justify-between items-baseline">
+          <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider">SMS • Thomas 🎾</span>
+          <span class="text-[9px] text-slate-400">À l'instant</span>
+        </div>
+        <p class="text-xs font-semibold text-slate-100 truncate mt-0.5">« Ça te dit un tennis demain à 17h après les cours ? »</p>
+        <p class="text-[10px] text-slate-400 italic">Appuyez pour afficher la réponse de Léo...</p>
+      </div>
+    </div>
+
+    <!-- MODAL RÉPONSE PUSH TENNIS -->
+    <div id="push-modal" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex flex-col justify-center items-center p-5">
+      <div class="bg-slate-900 border border-slate-700 rounded-2xl p-5 w-full space-y-4 shadow-2xl">
+        <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+          <div class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center font-bold text-sm">TH</div>
+          <div>
+            <h3 class="font-bold text-sm text-white">Thomas</h3>
+            <p class="text-[11px] text-amber-400">Match de Tennis 🎾</p>
+          </div>
+        </div>
+        <div class="space-y-3 text-xs">
+          <div class="bg-slate-800 p-3 rounded-xl text-slate-200">
+            « Ça te dit un tennis demain à 17h après les cours ? Je réserve le court n°3 si t'es chaud ! »
+          </div>
+          <div class="bg-blue-600 text-white p-3 rounded-xl ml-auto max-w-[85%] text-right font-medium">
+            « Carrément, je prends ma raquette ! »
+          </div>
+        </div>
+        <button id="push-modal-close" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700">
+          Fermer la notification
+        </button>
+      </div>
+    </div>
+
     <!-- ZONE DE CONTENU DES ÉCRANS -->
     <div class="flex-1 relative overflow-hidden flex flex-col">
 
@@ -70,8 +111,7 @@
       <!-- ÉCRAN D'ACCUEIL MULTI-PAGES (#home-screen) -->
       <!-- ========================================== -->
       <div id="home-screen" class="absolute inset-0 flex flex-col justify-between bg-cover bg-center transition-all duration-300 z-10 cursor-grab active:cursor-grabbing" style="background-image: url('assets/wallpapers/wallpaper.jpg');">
-        <!-- Overlay Sombre -->
-        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-900/20 to-slate-950/80 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-900/30 to-slate-950/85 pointer-events-none"></div>
 
         <div class="relative z-10 flex flex-col h-full justify-between pt-4 pb-2">
           <!-- Widget Horloge/Date -->
@@ -90,7 +130,7 @@
                 <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="whatsapp">
                   <div class="relative w-16 h-16 sm:w-18 sm:h-18 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
                     <i data-lucide="message-circle" class="w-8 h-8 text-white fill-white"></i>
-                    <span class="app-badge absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[11px] w-5.5 h-5.5 rounded-full flex items-center justify-center font-bold border-2 border-slate-900 badge-pulse">2</span>
+                    <span class="app-badge absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[11px] w-5.5 h-5.5 rounded-full flex items-center justify-center font-bold border-2 border-slate-900 badge-pulse">1</span>
                   </div>
                   <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">WhatsApp</span>
                 </div>
@@ -122,20 +162,19 @@
 
                 <!-- 5. Photos -->
                 <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="photos">
-                  <div class="relative w-16 h-16 sm:w-18 sm:h-18 bg-white rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform overflow-hidden">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-white rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform overflow-hidden relative">
                     <div class="absolute inset-0 bg-gradient-to-tr from-cyan-400 via-amber-300 to-rose-400 opacity-80"></div>
                     <i data-lucide="image" class="w-8 h-8 text-slate-800 relative z-10"></i>
-                    <span class="app-badge absolute -top-1.5 -right-1.5 bg-red-500 text-white text-[11px] w-5.5 h-5.5 rounded-full flex items-center justify-center font-bold border-2 border-slate-900 badge-pulse">1</span>
                   </div>
                   <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Photos</span>
                 </div>
 
-                <!-- 6. Notes -->
-                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="notes">
-                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-amber-400 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
-                    <i data-lucide="file-text" class="w-8 h-8 text-amber-950"></i>
+                <!-- 6. Pronote (NOUVELLE APP ENRICHISSEMENT) -->
+                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="pronote">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-blue-900 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform border border-blue-700">
+                    <i data-lucide="graduation-cap" class="w-8 h-8 text-white"></i>
                   </div>
-                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Notes</span>
+                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Pronote</span>
                 </div>
 
                 <!-- 7. Spotify -->
@@ -155,25 +194,33 @@
                 </div>
               </div>
 
-              <!-- PAGE 2 (APPS SECONDAIRES - AVEC PONG JOUABLE) -->
+              <!-- PAGE 2 (APPS SECONDAIRES & DÉCOR) -->
               <div id="home-page-2" class="home-page grid grid-cols-4 gap-y-6 gap-x-4 px-4 items-center">
-                <!-- 9. Reddit -->
-                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="reddit">
-                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-orange-600 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
-                    <i data-lucide="bot" class="w-8 h-8 text-white"></i>
+                <!-- 9. Messenger (NOUVELLE APP COMPORTEMENT 8) -->
+                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="messenger">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-blue-500 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
+                    <i data-lucide="send" class="w-8 h-8 text-white"></i>
                   </div>
-                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Reddit</span>
+                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Messenger</span>
                 </div>
 
-                <!-- 10. Strava -->
-                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="strava">
-                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-orange-500 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
-                    <i data-lucide="activity" class="w-8 h-8 text-white"></i>
+                <!-- 10. TikTok -->
+                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="tiktok">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-black border border-cyan-400/50 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
+                    <i data-lucide="video" class="w-8 h-8 text-cyan-400"></i>
                   </div>
-                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Strava</span>
+                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">TikTok</span>
                 </div>
 
-                <!-- 11. Mail -->
+                <!-- 11. Discord -->
+                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="discord">
+                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
+                    <i data-lucide="gamepad-2" class="w-8 h-8 text-white"></i>
+                  </div>
+                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Discord</span>
+                </div>
+
+                <!-- 12. Mail -->
                 <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="mail">
                   <div class="relative w-16 h-16 sm:w-18 sm:h-18 bg-red-500 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
                     <i data-lucide="mail" class="w-8 h-8 text-white"></i>
@@ -182,23 +229,7 @@
                   <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Mail</span>
                 </div>
 
-                <!-- 12. TikTok -->
-                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="tiktok">
-                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-black border border-cyan-400/50 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
-                    <i data-lucide="video" class="w-8 h-8 text-cyan-400"></i>
-                  </div>
-                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">TikTok</span>
-                </div>
-
-                <!-- 13. Discord -->
-                <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="discord">
-                  <div class="w-16 h-16 sm:w-18 sm:h-18 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
-                    <i data-lucide="gamepad-2" class="w-8 h-8 text-white"></i>
-                  </div>
-                  <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Discord</span>
-                </div>
-
-                <!-- 14. Vinted -->
+                <!-- 13. Vinted -->
                 <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="vinted">
                   <div class="w-16 h-16 sm:w-18 sm:h-18 bg-teal-600 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
                     <i data-lucide="shopping-bag" class="w-8 h-8 text-white"></i>
@@ -206,7 +237,7 @@
                   <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Vinted</span>
                 </div>
 
-                <!-- 15. MINI-JEU PONG JOUABLE (Remplaçant de Clash) -->
+                <!-- 14. Pong Arcade -->
                 <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="pong">
                   <div class="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-tr from-purple-600 to-indigo-500 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform border border-purple-400/40">
                     <i data-lucide="gamepad" class="w-8 h-8 text-white"></i>
@@ -214,7 +245,7 @@
                   <span class="text-[12px] text-white font-medium mt-1.5 drop-shadow-md text-center">Pong</span>
                 </div>
 
-                <!-- 16. Réglages -->
+                <!-- 15. Réglages -->
                 <div class="app-icon flex flex-col items-center cursor-pointer group" data-app="settings">
                   <div class="w-16 h-16 sm:w-18 sm:h-18 bg-slate-700 rounded-2xl flex items-center justify-center shadow-xl group-active:scale-90 transition-transform">
                     <i data-lucide="settings" class="w-8 h-8 text-slate-200"></i>
@@ -268,10 +299,9 @@
       </div>
 
       <!-- ========================================== -->
-      <!-- VUE APP 2 : INSTAGRAM (#app-instagram)     -->
+      <!-- VUE APP 1 : INSTAGRAM (#app-instagram)     -->
       <!-- ========================================== -->
       <div id="app-instagram" class="app-screen hidden flex-col h-full bg-slate-950 text-white z-20 relative">
-        <!-- App Header Fixe -->
         <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950 sticky top-0 z-30">
           <button class="app-back-btn text-rose-400 font-medium flex items-center gap-1 text-xs hover:underline" data-app="instagram">
             <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
@@ -285,12 +315,9 @@
           </div>
         </div>
 
-        <!-- Scrollable Instagram Feed & Stories -->
         <div class="flex-1 overflow-y-auto no-scrollbar space-y-4 pb-6">
-
           <!-- Stories Bar -->
           <div class="flex gap-4 px-4 py-3 border-b border-slate-800 overflow-x-auto no-scrollbar bg-slate-950">
-            <!-- Your Story -->
             <div class="flex flex-col items-center gap-1 flex-shrink-0">
               <div class="w-14 h-14 rounded-full p-[2px] bg-slate-700">
                 <img src="assets/avatars/leo.jpg" alt="Léo" class="w-full h-full rounded-full object-cover border-2 border-slate-950" />
@@ -298,7 +325,7 @@
               <span class="text-[10px] text-slate-400">Ton story</span>
             </div>
 
-            <!-- Story Léo 👉 (VRAIE ERREUR 3) -->
+            <!-- Story Léo 👉 (COMPORTEMENT 1 - PAMPLEMOUSSE) -->
             <div class="insta-story-item flex flex-col items-center gap-1 flex-shrink-0 cursor-pointer group" data-story="leo">
               <div class="w-14 h-14 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 group-hover:scale-105 transition-transform">
                 <img src="assets/avatars/leo.jpg" alt="Léo" class="w-full h-full rounded-full object-cover border-2 border-slate-950" />
@@ -306,26 +333,16 @@
               <span class="text-[10px] font-semibold text-rose-400">leo_lbr 🍊</span>
             </div>
 
-            <!-- Story Lucas -->
             <div class="insta-story-item flex flex-col items-center gap-1 flex-shrink-0 cursor-pointer group" data-story="lucas">
               <div class="w-14 h-14 rounded-full p-[2.5px] bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600">
                 <div class="w-full h-full rounded-full bg-emerald-700 flex items-center justify-center font-bold text-xs border-2 border-slate-950">LU</div>
               </div>
               <span class="text-[10px] text-slate-300">lucas_skate</span>
             </div>
-
-            <!-- Story Marianne -->
-            <div class="insta-story-item flex flex-col items-center gap-1 flex-shrink-0 cursor-pointer group" data-story="marianne">
-              <div class="w-14 h-14 rounded-full p-[2.5px] bg-slate-700">
-                <div class="w-full h-full rounded-full bg-purple-700 flex items-center justify-center font-bold text-xs border-2 border-slate-950">MA</div>
-              </div>
-              <span class="text-[10px] text-slate-400">marianne_b</span>
-            </div>
           </div>
 
-          <!-- POST 1 : LÉO (VRAIE ERREUR 3 - JUS DE PAMPLEMOUSSE) -->
+          <!-- POST 1 : LÉO (COMPORTEMENT 1 - JUS DE PAMPLEMOUSSE) -->
           <div class="bg-slate-900/60 border-y border-slate-800/80">
-            <!-- Header Post -->
             <div class="flex items-center justify-between p-3">
               <div class="flex items-center gap-2.5">
                 <img src="assets/avatars/leo.jpg" alt="Léo" class="w-8 h-8 rounded-full object-cover border border-purple-500" />
@@ -337,12 +354,10 @@
               <i data-lucide="more-horizontal" class="w-4 h-4 text-slate-400"></i>
             </div>
 
-            <!-- Image Post (PROPRE SANS DÉFORMATION) -->
             <div class="w-full bg-slate-950">
               <img src="assets/images/pamplemousse.jpg" alt="Jus de pamplemousse" class="insta-post-img" />
             </div>
 
-            <!-- Action Bar & Caption -->
             <div class="p-3">
               <div class="flex justify-between items-center mb-2">
                 <div class="flex items-center gap-4">
@@ -352,57 +367,24 @@
                 </div>
                 <i data-lucide="bookmark" class="w-5 h-5 text-slate-300"></i>
               </div>
-              <p class="font-semibold text-xs text-slate-100 mb-1">Aimé par <span class="font-bold">thomas_bt</span> et <span class="font-bold">38 autres personnes</span></p>
+              <p class="font-semibold text-xs text-slate-100 mb-1">Aimé par <span class="font-bold">thomas_bt</span> et <span class="font-bold">42 autres personnes</span></p>
               <div class="text-xs text-slate-200">
                 <p>
                   <span class="font-bold text-white mr-1">leo_lbr</span>
-                  On commence la semaine avec la nouvelle cure Detox 🍊🥤 1 grand verre de pur jus de pamplemousse frais tous les matins depuis 4 jours ! Objectif pleine forme 💪 #HealthyLife #Detox #MorningRoutine
+                  Pause terrasse avec l'équipe 🍊🥤 Toast au pur jus de pamplemousse pressé ! La base tous les jours en ce moment ☀️ #Terrasse #Detox #PamplemousseAddict
                 </p>
               </div>
               <div class="mt-3 pt-2 border-t border-slate-800/80 text-xs space-y-1.5">
                 <div class="text-slate-300">
-                  <span class="font-semibold text-white mr-1">thomas_bt</span> Stylé ! Ça pique pas trop le matin ?
+                  <span class="font-semibold text-white mr-1">thomas_bt</span> Tu tournes qu'à ça en ce moment frérot haha
                 </div>
                 <div class="text-slate-300 pl-3 border-l-2 border-slate-700">
-                  <span class="font-semibold text-white mr-1">leo_lbr</span> <span class="text-purple-400">@thomas_bt</span> Au début si, mais on s'habitue trop vite haha
+                  <span class="font-semibold text-white mr-1">leo_lbr</span> <span class="text-purple-400">@thomas_bt</span> C'est trop addictif !
                 </div>
               </div>
               <span class="text-[10px] text-slate-400 uppercase mt-2 block">Il y a 2 heures</span>
             </div>
           </div>
-
-          <!-- POST 2 (DECOR : Skate Lucas) -->
-          <div class="bg-slate-900/60 border-y border-slate-800/80">
-            <div class="flex items-center justify-between p-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-xs text-white">LU</div>
-                <h4 class="font-semibold text-xs text-white">lucas_skate</h4>
-              </div>
-            </div>
-            <div class="w-full h-48 bg-slate-800 flex items-center justify-center text-slate-400 text-xs">
-              <div class="text-center p-4">
-                <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2 text-emerald-400"></i>
-                <p class="font-bold text-slate-200">Session Skatepark Grammont 🛹🔥</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- POST 3 (DECOR : Pub Nike) -->
-          <div class="bg-slate-900/60 border-y border-slate-800/80">
-            <div class="flex items-center justify-between p-3">
-              <div class="flex items-center gap-2.5">
-                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs text-white">NK</div>
-                <h4 class="font-semibold text-xs text-white">nike_france <span class="text-[10px] text-slate-400 font-normal">• Sponsorisé</span></h4>
-              </div>
-            </div>
-            <div class="w-full h-44 bg-slate-800 flex items-center justify-center text-slate-400 text-xs">
-              <div class="text-center p-4">
-                <i data-lucide="shopping-bag" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
-                <p class="font-bold text-slate-200">Nouvelle Collection Streetwear 👟</p>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         <!-- STORY MODAL OVERLAY -->
@@ -427,199 +409,486 @@
             <img src="assets/images/pamplemousse.jpg" alt="Jus de pamplemousse" class="w-full h-80 object-cover" />
             <div class="absolute inset-x-0 bottom-4 bg-slate-950/85 backdrop-blur-md p-3.5 mx-3 rounded-xl border border-rose-500/40 text-center">
               <p class="text-xs font-bold text-rose-300 drop-shadow">
-                🍊 Cure Detox #Day4 ! 1 grand verre de pur jus de pamplemousse frais tous les matins depuis 4 jours ! Objectif pleine forme 💪
+                🍊 Pause terrasse avec l'équipe ! Toast au pur jus de pamplemousse pressé ! La base tous les jours en ce moment ☀️
               </p>
             </div>
-          </div>
-
-          <div class="flex items-center gap-2 pt-2">
-            <div class="flex-1 bg-slate-900 border border-slate-700 rounded-full px-4 py-2 text-xs text-slate-400">
-              Envoyer un message à leo_lbr...
-            </div>
-            <i data-lucide="heart" class="w-6 h-6 text-white"></i>
           </div>
         </div>
       </div>
 
       <!-- ========================================== -->
-      <!-- VUE APP PONG JOUABLE (#app-pong)           -->
+      <!-- VUE APP 2 : WHATSAPP (#app-whatsapp)      -->
       <!-- ========================================== -->
-      <div id="app-pong" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
-        <!-- App Header -->
-        <div class="flex items-center justify-between px-4 py-3 border-b border-purple-500/30 bg-purple-950 sticky top-0 z-30">
-          <button class="app-back-btn text-purple-300 font-medium flex items-center gap-1 text-xs hover:underline" data-app="pong">
+      <div id="app-whatsapp" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900 sticky top-0 z-30">
+          <button class="app-back-btn text-emerald-400 font-medium flex items-center gap-1 text-xs hover:underline" data-app="whatsapp">
             <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
           </button>
-          <div class="text-center">
-            <h1 class="font-bold text-xs text-purple-200">Pong Arcade</h1>
-            <span id="pong-score" class="text-[11px] font-bold text-emerald-400">Joueur : 0 | Bot : 0</span>
+          <h1 class="font-bold text-base tracking-wide text-emerald-400 flex items-center gap-2">
+            <i data-lucide="message-circle" class="w-5 h-5 fill-emerald-400"></i> WhatsApp
+          </h1>
+          <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+        </div>
+
+        <div id="wa-chat-list" class="flex-1 overflow-y-auto no-scrollbar divide-y divide-slate-800">
+          <!-- Chat Sofiane (COMPORTEMENT 2 - BOXE THAÏ / MUAY THAÏ) -->
+          <div class="wa-chat-item flex items-center gap-3 p-3.5 hover:bg-slate-800/60 cursor-pointer transition" data-chat="sofiane">
+            <div class="w-11 h-11 rounded-full bg-red-700 flex items-center justify-center font-bold text-white text-base">SO</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-semibold text-slate-100 text-sm truncate">Sofiane (Boxe 🥊)</h3>
+                <span class="text-[11px] text-amber-400 font-bold">13:45</span>
+              </div>
+              <p class="text-xs text-slate-300 truncate mt-0.5 font-medium">Carrément chaud ! J'ai trop envie de tester la boxe thaï...</p>
+            </div>
           </div>
+
+          <!-- Chat Lucas (Decor) -->
+          <div class="wa-chat-item flex items-center gap-3 p-3.5 hover:bg-slate-800/60 cursor-pointer transition" data-chat="lucas">
+            <div class="w-11 h-11 rounded-full bg-emerald-700 flex items-center justify-center font-bold text-white text-base">LU</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-semibold text-slate-100 text-sm truncate">Lucas (Lycée)</h3>
+                <span class="text-[11px] text-slate-400">11:20</span>
+              </div>
+              <p class="text-xs text-slate-400 truncate mt-0.5">On se fait un FIFA après les cours ?</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="wa-chat-detail" class="hidden flex-1 flex-col bg-[#0b141a] relative overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2 bg-[#202c33] text-white border-b border-slate-700">
+            <button id="wa-back-to-list" class="text-emerald-400 flex items-center gap-1 text-xs">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i> Discussions
+            </button>
+            <div class="flex items-center gap-2">
+              <div id="wa-contact-avatar" class="w-7 h-7 rounded-full bg-red-700 flex items-center justify-center text-xs font-bold text-white">SO</div>
+              <span id="wa-contact-name" class="font-semibold text-xs">Sofiane (Boxe 🥊)</span>
+            </div>
+            <i data-lucide="phone" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+
+          <div id="wa-messages-container" class="flex-1 p-3 overflow-y-auto space-y-3 text-xs no-scrollbar"></div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 3 : MESSAGES / SMS (#app-messages) -->
+      <!-- ========================================== -->
+      <div id="app-messages" class="app-screen hidden flex-col h-full bg-white text-slate-900 z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50 sticky top-0 z-30">
+          <button class="app-back-btn text-blue-600 font-medium flex items-center gap-1 text-xs hover:underline" data-app="messages">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-base tracking-wide text-slate-900 flex items-center gap-2">
+            <i data-lucide="message-square" class="w-5 h-5 text-green-500 fill-green-500"></i> Messages
+          </h1>
           <div class="w-8"></div>
         </div>
 
-        <!-- Game Content -->
+        <div id="msg-chat-list" class="flex-1 overflow-y-auto no-scrollbar divide-y divide-slate-100">
+          <!-- Chat Maman (COMPORTEMENT 3 - PIERCING OREILLE) -->
+          <div class="msg-chat-item flex items-center gap-3 p-3.5 hover:bg-slate-50 cursor-pointer transition" data-chat="maman">
+            <div class="w-11 h-11 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-base">MA</div>
+            <div class="flex-1 min-w-0">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-bold text-slate-900 text-sm truncate">Maman ❤️</h3>
+                <span class="text-[11px] text-slate-400">12:15</span>
+              </div>
+              <p class="text-xs text-slate-600 truncate mt-0.5 font-medium">Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée...</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="msg-chat-detail" class="hidden flex-1 flex-col bg-slate-50 relative overflow-hidden">
+          <div class="flex items-center justify-between px-3 py-2 bg-white text-slate-900 border-b border-slate-200">
+            <button id="msg-back-to-list" class="text-blue-600 flex items-center gap-1 text-xs font-medium">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i> SMS
+            </button>
+            <span id="msg-contact-name" class="font-bold text-xs">Maman ❤️</span>
+            <div class="w-6"></div>
+          </div>
+          <div id="msg-messages-container" class="flex-1 p-3 overflow-y-auto space-y-3 text-xs no-scrollbar"></div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 4 : CHROME (#app-chrome)           -->
+      <!-- ========================================== -->
+      <div id="app-chrome" class="app-screen hidden flex-col h-full bg-slate-900 text-slate-100 z-20 relative">
+        <div class="p-3 border-b border-slate-800 bg-slate-900 space-y-2 sticky top-0 z-30">
+          <div class="flex items-center justify-between">
+            <button class="app-back-btn text-blue-400 font-medium flex items-center gap-1 text-xs" data-app="chrome">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+            </button>
+            <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+              <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Google Chrome (3 Onglets)
+            </span>
+            <button id="chrome-menu-btn" class="p-1.5 text-slate-300 hover:text-blue-400 bg-slate-800 rounded-lg border border-slate-700">
+              <i data-lucide="more-vertical" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <div class="bg-slate-800 rounded-full px-3 py-1.5 flex items-center justify-between border border-slate-700 text-xs">
+            <span id="chrome-url-text" class="truncate">google.fr/search?q=location+skis+pistes+noires</span>
+          </div>
+        </div>
+
+        <!-- COMPORTEMENT 6 : ONGLETS DU NAVIGATEUR (SKI PISTES NOIRES) -->
+        <div id="chrome-home-view" class="flex-1 overflow-y-auto p-4 no-scrollbar space-y-3 text-xs">
+          <h3 class="font-bold text-slate-400 uppercase text-[11px] tracking-wider mb-2">Onglets ouverts (3)</h3>
+
+          <!-- Onglet 1 -->
+          <div class="p-3.5 bg-slate-800 border border-blue-500/40 rounded-xl space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-blue-400">🔍 Google Search</span>
+              <span class="text-[10px] text-amber-400 font-bold">Actif</span>
+            </div>
+            <p class="font-bold text-white text-sm">location skis pistes noires station chalet</p>
+            <p class="text-[11px] text-slate-400">Recherche de matériel haute performance pour descentes rapides...</p>
+          </div>
+
+          <!-- Onglet 2 -->
+          <div class="p-3.5 bg-slate-800/80 border border-slate-700 rounded-xl space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-slate-300">🌐 chalet-alpes-vacances.com</span>
+              <span class="text-[10px] text-slate-400">Ouvert</span>
+            </div>
+            <p class="font-bold text-white text-sm">Réservation Groupe - Séjour Ski Février</p>
+            <p class="text-[11px] text-slate-400">Chalet 12 personnes avec accès direct au domaine skiable grands domaines...</p>
+          </div>
+
+          <!-- Onglet 3 -->
+          <div class="p-3.5 bg-slate-800/80 border border-slate-700 rounded-xl space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-blue-400">🔍 Google Search</span>
+              <span class="text-[10px] text-slate-400">Ouvert</span>
+            </div>
+            <p class="font-bold text-white text-sm">comment eviter les bosses sur piste noire ski</p>
+            <p class="text-[11px] text-slate-400">Conseils et techniques de virages courts pour pentes raides et champs de bosses...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 5 : YOUTUBE (#app-youtube)         -->
+      <!-- ========================================== -->
+      <div id="app-youtube" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-red-600 text-white sticky top-0 z-30">
+          <button class="app-back-btn text-white font-medium flex items-center gap-1 text-xs" data-app="youtube">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-base flex items-center gap-2"><i data-lucide="youtube" class="w-5 h-5"></i> YouTube</h1>
+          <div class="w-6"></div>
+        </div>
+
+        <!-- COMPORTEMENT 5 : BIBLIOTHÈQUE VIDÉOS LIKÉES (MOTOCROSS / ENDURO) -->
+        <div class="flex-1 overflow-y-auto p-4 no-scrollbar space-y-4 text-xs">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="font-bold text-white flex items-center gap-2">
+              <i data-lucide="thumbs-up" class="w-4 h-4 text-red-500"></i> Vidéos likées & enregistrées
+            </h3>
+            <span class="text-[10px] text-slate-400">Bibliothèque</span>
+          </div>
+
+          <!-- Vidéo Motocross (COMPORTEMENT 5) -->
+          <div class="bg-slate-800 border border-red-500/40 rounded-xl overflow-hidden shadow-lg">
+            <div class="h-36 bg-slate-950 flex items-center justify-center text-red-500 font-bold relative">
+              <i data-lucide="play-circle" class="w-12 h-12"></i>
+              <span class="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[10px] px-1.5 py-0.5 rounded">14:20</span>
+            </div>
+            <div class="p-3 space-y-2">
+              <h4 class="font-bold text-sm text-white">STAGE MOTOCROSS & ENDURO EN FORÊT - TUTO POUR DÉBUTANTS 🏍️💨</h4>
+              <p class="text-[10px] text-slate-400">MotoRider TV • 240k vues • Il y a 3 jours</p>
+              
+              <!-- Commentaire de Léo -->
+              <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-700 mt-2 space-y-1">
+                <span class="font-bold text-amber-400 text-[10px]">Commentaire de Léo (@leo_lbr) :</span>
+                <p class="text-[11px] text-slate-200 italic">
+                  « Session réservée pour dimanche matin avec les cousins sur le circuit de cross, trop hâte d'envoyer les premiers sauts ! 🏍️💨 »
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 6 : TIKTOK (#app-tiktok)           -->
+      <!-- ========================================== -->
+      <div id="app-tiktok" class="app-screen hidden flex-col h-full bg-black text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-black sticky top-0 z-30">
+          <button class="app-back-btn text-cyan-400 font-medium flex items-center gap-1 text-xs" data-app="tiktok">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-base text-cyan-400">TikTok</h1>
+          <div class="w-6"></div>
+        </div>
+
+        <!-- COMPORTEMENT 4 : COMMENTAIRE TROTTINETTE EXTRÊME -->
+        <div class="flex-1 flex flex-col justify-between p-4 bg-gradient-to-b from-slate-900 via-black to-slate-950 overflow-y-auto no-scrollbar space-y-4">
+          <div class="space-y-2">
+            <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl">
+              <span class="text-xs font-bold text-cyan-400">Vidéo Tendance 🔥 • @scooter_freestyle</span>
+              <p class="text-xs text-slate-200 mt-1">"GAP DE 10 MARCHES SANS CASQUE AU PARK 🛹💀"</p>
+            </div>
+
+            <!-- Espace Commentaires sous la vidéo -->
+            <div class="bg-slate-900 border border-cyan-500/40 p-3.5 rounded-xl space-y-2 text-xs">
+              <h4 class="font-bold text-cyan-400 text-[11px] uppercase tracking-wider">Espace Commentaires (142)</h4>
+
+              <!-- Commentaire de Léo -->
+              <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 space-y-1">
+                <span class="font-bold text-amber-400">@leo_off (Léo) :</span>
+                <p class="text-slate-200">
+                  « @lucas_skate viens on va tester le même saut sur les marches du conservatoire après les cours vendredi ! Je pose la figure direct 🔥 »
+                </p>
+              </div>
+
+              <!-- Réponse de Lucas -->
+              <div class="pl-3 border-l-2 border-slate-700 text-slate-300">
+                <span class="font-bold text-emerald-400">@lucas_skate :</span> T'es un grand malade, si tu tombes tu te tues mdr
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 7 : PHOTOS (#app-photos)           -->
+      <!-- ========================================== -->
+      <div id="app-photos" class="app-screen hidden flex-col h-full bg-slate-950 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950 sticky top-0 z-30">
+          <button class="app-back-btn text-rose-400 font-medium flex items-center gap-1 text-xs" data-app="photos">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-base">Photos</h1>
+          <div class="w-8"></div>
+        </div>
+
+        <!-- COMPORTEMENT 7 : ALBUM VACANCES SUD (ACTIVITÉ SÛRE) -->
+        <div id="photos-grid-view" class="flex-1 overflow-y-auto p-3 space-y-3 no-scrollbar">
+          <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+            <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider">Album "Vacances Sud 🏖️" (6 Photos)</h4>
+            <span class="text-[10px] text-slate-400">Activité Sûre</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center space-y-1 cursor-pointer">
+              <div class="h-28 bg-blue-950 rounded-lg flex items-center justify-center text-blue-400 font-bold text-xs"><i data-lucide="anchor" class="w-8 h-8"></i></div>
+              <span class="text-[11px] font-semibold text-slate-200 block">Pédalo & Toboggan mer 🌊</span>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center space-y-1 cursor-pointer">
+              <div class="h-28 bg-cyan-950 rounded-lg flex items-center justify-center text-cyan-400 font-bold text-xs"><i data-lucide="eye" class="w-8 h-8"></i></div>
+              <span class="text-[11px] font-semibold text-slate-200 block">Snorkeling Masque & Tuba 🏓</span>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center space-y-1 cursor-pointer">
+              <div class="h-28 bg-amber-950 rounded-lg flex items-center justify-center text-amber-400 font-bold text-xs"><i data-lucide="sun" class="w-8 h-8"></i></div>
+              <span class="text-[11px] font-semibold text-slate-200 block">Baignade & Châteaux de sable 🏖️</span>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-center space-y-1 cursor-pointer">
+              <div class="h-28 bg-purple-950 rounded-lg flex items-center justify-center text-purple-400 font-bold text-xs"><i data-lucide="camera" class="w-8 h-8"></i></div>
+              <span class="text-[11px] font-semibold text-slate-200 block">Coucher de soleil terrasse 🌅</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 8 : MESSENGER (#app-messenger)     -->
+      <!-- ========================================== -->
+      <div id="app-messenger" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-blue-600 text-white sticky top-0 z-30">
+          <button class="app-back-btn text-white font-medium flex items-center gap-1 text-xs" data-app="messenger">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-base">Messenger</h1>
+          <div class="w-6"></div>
+        </div>
+
+        <!-- COMPORTEMENT 8 : GROUPE BOWLING (ACTIVITÉ SÛRE) -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-3 text-xs no-scrollbar">
+          <div class="bg-slate-800 p-4 rounded-xl border border-blue-500/40 space-y-3">
+            <div class="flex items-center gap-3 border-b border-slate-700 pb-2">
+              <div class="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white text-xs">🎳</div>
+              <div>
+                <h3 class="font-bold text-sm text-white">La Bande du Vendredi 🎳</h3>
+                <span class="text-[10px] text-blue-400">4 membres</span>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="bg-slate-900 p-2.5 rounded-lg text-slate-200">
+                <span class="font-bold text-blue-400 block mb-0.5">Maxime :</span>
+                « Bowling vendredi soir à 19h les gars ? On fait les équipes sur place au centre commercial ! »
+              </div>
+
+              <div class="bg-blue-600 text-white p-2.5 rounded-lg ml-auto max-w-[85%] font-medium">
+                <span class="font-bold text-blue-100 block mb-0.5">Léo :</span>
+                « Grave chaud, préparez-vous à perdre, je fais que des strikes ! 🎳🔥 »
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 9 : DISCORD (#app-discord)         -->
+      <!-- ========================================== -->
+      <div id="app-discord" class="app-screen hidden flex-col h-full bg-[#313338] text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-[#1e1f22] bg-[#2b2d31] sticky top-0 z-30">
+          <button class="app-back-btn text-indigo-400 font-medium flex items-center gap-1 text-xs" data-app="discord">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-xs text-white">Discord • #sport-et-sorties</h1>
+          <div class="w-6"></div>
+        </div>
+
+        <!-- COMPORTEMENT 10 : FOOTBALL AMICAL (ACTIVITÉ SÛRE) -->
+        <div class="flex-1 p-3 text-xs space-y-3 no-scrollbar overflow-y-auto">
+          <div class="bg-[#2b2d31] p-3 rounded-xl border border-indigo-500/40 space-y-2">
+            <span class="text-[10px] font-bold text-indigo-400">Lycée - 3ème B • #sport-et-sorties</span>
+            
+            <div class="space-y-2">
+              <div class="flex gap-2">
+                <div class="w-7 h-7 rounded-full bg-emerald-600 flex items-center justify-center font-bold text-[10px] text-white">EN</div>
+                <div>
+                  <span class="font-bold text-emerald-400">Enzo</span> <span class="text-[9px] text-slate-400">15:10</span>
+                  <p class="text-slate-200 mt-0.5">Petit match de foot au city stade à côté du bahut après les cours à 16h30, qui est là ?</p>
+                </div>
+              </div>
+
+              <div class="flex gap-2 pl-4 border-l-2 border-indigo-500">
+                <div class="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center font-bold text-[10px] text-white">LÉ</div>
+                <div>
+                  <span class="font-bold text-purple-300">Léo</span> <span class="text-[9px] text-slate-400">15:12</span>
+                  <p class="text-slate-100 mt-0.5">Je suis là ! Je me mets en milieu de terrain.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- VUE APP 10 : PRONOTE (#app-pronote)        -->
+      <!-- ========================================== -->
+      <div id="app-pronote" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-blue-800 bg-blue-950 text-white sticky top-0 z-30">
+          <button class="app-back-btn text-blue-300 font-medium flex items-center gap-1 text-xs" data-app="pronote">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span>
+          </button>
+          <h1 class="font-bold text-base text-blue-300 flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-5 h-5"></i> Pronote (Léo L.)
+          </h1>
+          <div class="w-6"></div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs no-scrollbar">
+          <div class="bg-slate-800 p-4 rounded-xl border border-blue-700/60 space-y-3">
+            <h3 class="font-bold text-blue-300 text-xs uppercase tracking-wider">Dernières Notes Reçues</h3>
+            <div class="space-y-2">
+              <div class="flex justify-between items-center bg-slate-900 p-2.5 rounded-lg border border-slate-700">
+                <span>Mathématiques (Contrôle 3)</span>
+                <span class="font-bold text-emerald-400">14 / 20</span>
+              </div>
+              <div class="flex justify-between items-center bg-slate-900 p-2.5 rounded-lg border border-slate-700">
+                <span>SVT (TP Coagulation & Sang)</span>
+                <span class="font-bold text-emerald-400">16 / 20</span>
+              </div>
+              <div class="flex justify-between items-center bg-slate-900 p-2.5 rounded-lg border border-slate-700">
+                <span>Histoire-Géo (Révolution)</span>
+                <span class="font-bold text-amber-400">11 / 20</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-2">
+            <h3 class="font-bold text-amber-400 text-xs uppercase tracking-wider">Devoirs pour Demain</h3>
+            <p class="text-slate-200">Exercice 3 page 45 en Physique-Chimie (Énergie & Puissance).</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPS DE DÉCOR (Spotify, Mail, Vinted, Pong, Settings, Phone) -->
+      <!-- SPOTIFY (ENRICHI) -->
+      <div id="app-spotify" class="app-screen hidden flex-col h-full bg-slate-950 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950 sticky top-0 z-30">
+          <button class="app-back-btn text-emerald-400 font-medium flex items-center gap-1 text-xs" data-app="spotify"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
+          <h1 class="font-bold text-base text-emerald-400">Spotify</h1><div class="w-6"></div>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4 no-scrollbar flex flex-col items-center justify-around">
+          <div class="w-44 h-44 bg-gradient-to-br from-emerald-600 to-slate-900 rounded-2xl flex items-center justify-center shadow-2xl border border-emerald-500/30">
+            <i data-lucide="disc" class="w-20 h-20 text-emerald-400 animate-spin" style="animation-duration: 10s;"></i>
+          </div>
+          <div class="text-center space-y-1">
+            <h2 class="text-base font-bold text-white">Mode Avion</h2>
+            <p class="text-xs text-emerald-400 font-medium">Tiakola / SDM • Playlist Rap Fr 2026 🎧</p>
+          </div>
+          <div class="w-full bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-2 text-xs">
+            <h4 class="font-bold text-slate-400 uppercase text-[10px]">Playlists recommandées</h4>
+            <div class="flex justify-between text-slate-300"><span>🔥 Rap Français 2026</span><span>🏋️ Workout Motivation</span></div>
+            <div class="flex justify-between text-slate-300"><span>🎧 Chill & Révisions</span><span>⚡ Drill Fr</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIL -->
+      <div id="app-mail" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-red-600 text-white sticky top-0 z-30">
+          <button class="app-back-btn text-white font-medium flex items-center gap-1 text-xs" data-app="mail"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
+          <h1 class="font-bold text-base">Gmail</h1><div class="w-6"></div>
+        </div>
+        <div class="flex-1 p-4 text-xs space-y-3 overflow-y-auto no-scrollbar">
+          <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><h4 class="font-bold text-white">Confirmation commande Vêtements</h4><p class="text-[10px] text-slate-400">Votre colis Nike est en cours d'expédition...</p></div>
+          <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><h4 class="font-bold text-white">PlayStation Store Newsletter</h4><p class="text-[10px] text-slate-400">Promotions du mois de mai disponibles !</p></div>
+          <div class="bg-slate-800 p-3 rounded-xl border border-slate-700"><h4 class="font-bold text-white">Pronote Alert</h4><p class="text-[10px] text-slate-400">Nouveau compte-rendu d'évaluation ajouté...</p></div>
+        </div>
+      </div>
+
+      <!-- VINTED -->
+      <div id="app-vinted" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-teal-600 text-white sticky top-0 z-30">
+          <button class="app-back-btn text-white font-medium flex items-center gap-1 text-xs" data-app="vinted"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
+          <h1 class="font-bold text-base">Vinted</h1><div class="w-6"></div>
+        </div>
+        <div class="flex-1 p-4 text-xs">Sweat Thrasher - Livré le 05 Mai (25,00 €)</div>
+      </div>
+
+      <!-- PONG JOUABLE -->
+      <div id="app-pong" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-purple-500/30 bg-purple-950 sticky top-0 z-30">
+          <button class="app-back-btn text-purple-300 font-medium flex items-center gap-1 text-xs" data-app="pong"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
+          <div class="text-center"><h1 class="font-bold text-xs text-purple-200">Pong Arcade</h1><span id="pong-score" class="text-[11px] font-bold text-emerald-400">Joueur : 0 | Bot : 0</span></div>
+          <div class="w-8"></div>
+        </div>
         <div class="flex-1 p-3 overflow-hidden flex flex-col justify-center items-center">
           <canvas id="pongCanvas" class="w-full max-w-[320px] h-[380px] bg-slate-950 border border-slate-700 rounded-xl shadow-2xl block cursor-crosshair"></canvas>
-
           <button id="pong-start-btn" class="mt-3 px-6 py-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs rounded-full shadow-lg flex items-center justify-center gap-2">
             <i data-lucide="play" class="w-4 h-4 fill-slate-950"></i> Démarrer / Recommencer
           </button>
         </div>
       </div>
 
-      <!-- AUTRES APPS (Chrome, WhatsApp, Messages, Notes, Reddit, Photos, Strava, Mail, Spotify, YouTube, TikTok, Discord, Vinted, Settings, Phone) -->
-      <!-- CHROME -->
-      <div id="app-chrome" class="app-screen hidden flex-col h-full bg-slate-900 text-slate-100 z-20 relative">
-        <div class="p-3 border-b border-slate-800 bg-slate-900 space-y-2 sticky top-0 z-30">
-          <div class="flex items-center justify-between">
-            <button class="app-back-btn text-blue-400 font-medium flex items-center gap-1 text-xs" data-app="chrome"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-            <span class="text-xs font-semibold text-slate-300 flex items-center gap-1.5"><i data-lucide="globe" class="w-4 h-4 text-blue-400"></i> Google Chrome</span>
-            <button id="chrome-menu-btn" class="p-1.5 text-slate-300 hover:text-blue-400 bg-slate-800 rounded-lg border border-slate-700"><i data-lucide="more-vertical" class="w-4 h-4"></i></button>
-          </div>
-          <div class="bg-slate-800 rounded-full px-3 py-1.5 flex items-center justify-between border border-slate-700 text-xs">
-            <span id="chrome-url-text" class="truncate">google.fr</span>
-          </div>
-        </div>
-        <div id="chrome-menu-dropdown" class="hidden absolute top-14 right-3 w-52 bg-slate-800 border border-slate-700 rounded-xl shadow-2xl z-50 text-xs text-slate-200 overflow-hidden divide-y divide-slate-700/60">
-          <div id="chrome-menu-history-item" class="p-2.5 font-bold text-blue-400 cursor-pointer flex items-center justify-between"><span>📜 Historique</span><span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span></div>
-        </div>
-        <div id="chrome-home-view" class="flex-1 overflow-y-auto p-4 no-scrollbar space-y-6 flex flex-col items-center">
-          <h1 class="text-4xl font-black pt-6"><span class="text-blue-500">G</span><span class="text-red-500">o</span><span class="text-amber-500">o</span><span class="text-blue-500">g</span><span class="text-green-500">l</span><span class="text-red-500">e</span></h1>
-        </div>
-        <div id="chrome-history-view" class="hidden flex-1 flex-col overflow-y-auto p-4 no-scrollbar space-y-3 text-xs">
-          <div class="p-3 bg-slate-800 rounded-xl"><p class="font-bold text-white">coupe faim naturel efficace pas cher</p><span class="text-[10px] text-amber-400">Aujourd'hui - 12:05</span></div>
-          <div class="p-3 bg-slate-800 rounded-xl"><p class="font-bold text-white">deuxieme jour de jeune sensation de vertige normal ?</p><span class="text-[10px] text-amber-400">Aujourd'hui - 08:12</span></div>
-          <div class="p-3 bg-slate-800 rounded-xl"><p class="font-bold text-white">comment tenir un jeune sans rien manger juste de l eau</p><span class="text-[10px] text-slate-400">Hier - 21:30</span></div>
-          <div class="p-3 bg-slate-800 rounded-xl"><p class="font-bold text-white">jeune hydrique 72h effet sur le corps</p><span class="text-[10px] text-slate-400">Hier - 21:18</span></div>
-          <div class="p-3 bg-slate-800 rounded-xl"><p class="font-bold text-white">combien de kilos on perd en faisant un jeune de 3 jours</p><span class="text-[10px] text-slate-400">Hier - 21:14</span></div>
-        </div>
-      </div>
-
-      <!-- WHATSAPP -->
-      <div id="app-whatsapp" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+      <!-- RÉGLAGES -->
+      <div id="app-settings" class="app-screen hidden flex-col h-full bg-slate-900 text-slate-100 z-20">
         <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900 sticky top-0 z-30">
-          <button class="app-back-btn text-emerald-400 font-medium flex items-center gap-1 text-xs" data-app="whatsapp"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-          <h1 class="font-bold text-base text-emerald-400">WhatsApp</h1><div class="w-6"></div>
+          <button class="app-back-btn text-blue-400 font-medium flex items-center gap-1 text-xs" data-app="settings"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
+          <h1 class="font-bold text-base text-white">Réglages</h1><div class="w-6"></div>
         </div>
-        <div id="wa-chat-list" class="flex-1 overflow-y-auto no-scrollbar divide-y divide-slate-800">
-          <div class="wa-chat-item flex items-center gap-3 p-3.5 cursor-pointer" data-chat="lucas">
-            <div class="w-10 h-10 rounded-full bg-emerald-700 flex items-center justify-center font-bold">LU</div>
-            <div><h3 class="font-semibold text-sm">Lucas (Lycée)</h3><p class="text-xs text-slate-300">Propre, vas-y à toute au foot cet aprem.</p></div>
-          </div>
-          <div class="wa-chat-item flex items-center gap-3 p-3.5 cursor-pointer" data-chat="nathan">
-            <div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold">NA</div>
-            <div><h3 class="font-semibold text-sm">Nathan</h3><p class="text-xs text-slate-400">Abusé tu vas dormir en cours de SVT...</p></div>
-          </div>
-        </div>
-        <div id="wa-chat-detail" class="hidden flex-1 flex-col bg-[#0b141a] relative">
-          <div class="p-2 bg-[#202c33] flex items-center justify-between"><button id="wa-back-to-list" class="text-emerald-400 text-xs">← Chats</button><span id="wa-contact-name" class="font-bold text-xs">Contact</span><div class="w-4"></div></div>
-          <div id="wa-messages-container" class="flex-1 p-3 overflow-y-auto space-y-2 text-xs"></div>
-        </div>
+        <div class="flex-1 p-4 text-xs space-y-2"><div>iPhone de Léo (iOS 17)</div><div>Wi-Fi: Freebox_88A21B_Lucas</div><div>Batterie: 24% (Économie)</div></div>
       </div>
 
-      <!-- MESSAGES -->
-      <div id="app-messages" class="app-screen hidden flex-col h-full bg-white text-slate-900 z-20">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-100 bg-slate-50 sticky top-0 z-30">
-          <button class="app-back-btn text-blue-600 font-medium flex items-center gap-1 text-xs" data-app="messages"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-          <h1 class="font-bold text-base">Messages</h1><div class="w-6"></div>
+      <!-- TÉLÉPHONE -->
+      <div id="app-phone" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-900 sticky top-0 z-30">
+          <button class="app-back-btn text-green-400 font-medium flex items-center gap-1 text-xs" data-app="phone"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
+          <h1 class="font-bold text-base text-green-400">Appels récents</h1><div class="w-6"></div>
         </div>
-        <div id="msg-chat-list" class="flex-1 overflow-y-auto no-scrollbar divide-y divide-slate-100">
-          <div class="msg-chat-item flex items-center gap-3 p-3.5 cursor-pointer" data-chat="maman">
-            <div class="w-10 h-10 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold">MA</div>
-            <div><h3 class="font-bold text-sm">Maman ❤️</h3><p class="text-xs text-slate-600">Oui maman j'ai pris 1 comprimé de Doliprane 500mg...</p></div>
-          </div>
-        </div>
-        <div id="msg-chat-detail" class="hidden flex-1 flex-col bg-slate-50 relative">
-          <div class="p-2 bg-white flex justify-between"><button id="msg-back-to-list" class="text-blue-600 text-xs">← SMS</button><span id="msg-contact-name" class="font-bold text-xs">Maman ❤️</span><div class="w-4"></div></div>
-          <div id="msg-messages-container" class="flex-1 p-3 overflow-y-auto space-y-2 text-xs"></div>
-        </div>
+        <div class="flex-1 p-3 text-xs space-y-2"><div>Sofiane (Boxe 🥊) • 13:40</div><div>Maman ❤️ • 12:20</div></div>
       </div>
-
-      <!-- NOTES -->
-      <div id="app-notes" class="app-screen hidden flex-col h-full bg-amber-50 text-slate-900 z-20">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-amber-200/80 bg-amber-100/90 sticky top-0 z-30">
-          <button class="app-back-btn text-amber-800 font-medium flex items-center gap-1 text-xs" data-app="notes"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-          <h1 class="font-bold text-base">Notes</h1><div class="w-6"></div>
-        </div>
-        <div id="notes-list-view" class="flex-1 overflow-y-auto p-4 space-y-3">
-          <div class="note-item bg-white p-3.5 rounded-xl border border-amber-200 cursor-pointer" data-note="double-dose">
-            <h3 class="font-bold text-sm">Penses bêtes / Traitement</h3><p class="text-xs text-slate-600 line-clamp-2">Hier - 23:45 : Oublié de prendre le cachet... Ce matin : J'ai pris 2 comprimés...</p>
-          </div>
-          <div class="note-item bg-white p-3.5 rounded-xl border border-amber-200 cursor-pointer" data-note="oubli-gere">
-            <h3 class="font-bold text-sm">Rappel Mardi</h3><p class="text-xs text-slate-600 line-clamp-2">Mince j'ai oublié ma prise de 20h... Pharmacienne a dit de JAMAIS doubler...</p>
-          </div>
-        </div>
-        <div id="note-detail-view" class="hidden flex-1 flex-col bg-amber-50/50 p-4">
-          <button id="note-back-to-list" class="text-amber-800 text-xs mb-2">← Notes</button>
-          <h2 id="note-detail-title" class="text-base font-bold mb-2">Titre</h2>
-          <div id="note-detail-content" class="text-xs leading-relaxed font-mono bg-white p-3 rounded-xl border"></div>
-        </div>
-      </div>
-
-      <!-- REDDIT -->
-      <div id="app-reddit" class="app-screen hidden flex-col h-full bg-slate-950 text-slate-100 z-20">
-        <div class="p-3 border-b border-slate-800 bg-orange-600 text-white flex items-center justify-between sticky top-0 z-30">
-          <button class="app-back-btn text-white font-medium flex items-center gap-1 text-xs" data-app="reddit"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-          <h1 class="font-bold text-sm">Reddit</h1><div class="w-6"></div>
-        </div>
-        <div id="reddit-communities-view" class="flex-1 overflow-y-auto p-4 space-y-3 text-xs">
-          <h3 class="font-bold text-slate-400 uppercase">Mes Communautés</h3>
-          <div class="reddit-comm-item p-3 bg-slate-900 border border-orange-500/60 rounded-xl cursor-pointer" data-sub="zerolegumes">
-            <h4 class="font-bold text-orange-400">r/ZeroLégumesFr 🥦🚫</h4><p class="text-[10px] text-slate-300">Commu anti-légumes</p>
-          </div>
-        </div>
-        <div id="reddit-feed-view" class="hidden flex-1 flex-col p-4 text-xs space-y-3">
-          <button id="reddit-back-to-comm" class="text-orange-400 text-xs mb-2">← Communautés</button>
-          <div class="bg-slate-900 border border-orange-500/40 p-4 rounded-xl space-y-2">
-            <span class="font-bold text-orange-400">r/ZeroLégumesFr • u/Leo_Lbr</span>
-            <h2 class="font-bold text-white text-sm">Adieu les légumes verts, meilleur choix de ma vie !</h2>
-            <p class="text-slate-300 bg-slate-950/60 p-2.5 rounded">Ça fait 1 semaine que j'ai complètement banni tous les légumes verts suite à vos articles. Mon médecin me disait d'en manger régulièrement à cause de mon traitement AVK, mais j'ai préféré tout stopper d'un coup.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PHOTOS -->
-      <div id="app-photos" class="app-screen hidden flex-col h-full bg-slate-950 text-white z-20">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950 sticky top-0 z-30">
-          <button class="app-back-btn text-rose-400 font-medium flex items-center gap-1 text-xs" data-app="photos"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-          <h1 class="font-bold text-base">Photos</h1><div class="w-6"></div>
-        </div>
-        <div id="photos-grid-view" class="flex-1 overflow-y-auto p-3 grid grid-cols-3 gap-2">
-          <div class="photo-thumb relative rounded overflow-hidden bg-slate-900 h-24 cursor-pointer" data-photo="brocolis">
-            <img src="assets/images/assiette-brocolis.jpg" alt="Brocolis" class="w-full h-full object-cover" />
-            <span class="absolute top-1 left-1 bg-amber-500 text-[8px] font-bold px-1 rounded text-slate-950">Snap</span>
-          </div>
-        </div>
-        <div id="photos-modal-view" class="hidden flex-1 flex-col bg-slate-950 p-3 justify-center items-center relative">
-          <button id="photo-close-modal" class="absolute top-3 left-3 bg-slate-800 text-white text-xs px-3 py-1 rounded-full">← Galerie</button>
-          <img id="photo-modal-img" src="assets/images/assiette-brocolis.jpg" alt="Photo" class="w-full h-72 object-cover rounded-xl" />
-          <p class="text-xs text-emerald-300 mt-3 text-center">« Repas Healthy chez mamie à midi : Montagne d'épinards et de brocolis 🥦🟢 »</p>
-        </div>
-      </div>
-
-      <!-- STRAVA -->
-      <div id="app-strava" class="app-screen hidden flex-col h-full bg-slate-950 text-white z-20">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-orange-600 bg-orange-600 sticky top-0 z-30">
-          <button class="app-back-btn text-white font-medium flex items-center gap-1 text-xs" data-app="strava"><i data-lucide="chevron-left" class="w-4 h-4"></i> <span class="back-text">Accueil</span></button>
-          <h1 class="font-bold text-base">Strava</h1><div class="w-6"></div>
-        </div>
-        <div class="flex-1 p-4 text-xs space-y-3">
-          <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-            <h2 class="font-bold text-white">Course à pied du mardi après-midi 🏃‍♂️</h2>
-            <span class="font-extrabold text-orange-500 text-sm">4,2 km • 25 min</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- APPS DECOR (Mail, Spotify, YouTube, TikTok, Discord, Vinted, Settings, Phone) -->
-      <div id="app-mail" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20"><div class="p-3 bg-red-600 flex justify-between"><button class="app-back-btn text-xs" data-app="mail">← Accueil</button><span>Gmail</span><div class="w-4"></div></div><div class="p-4 text-xs">Pronote - Devoir Histoire</div></div>
-      <div id="app-spotify" class="app-screen hidden flex-col h-full bg-slate-950 text-white z-20"><div class="p-3 bg-slate-950 flex justify-between"><button class="app-back-btn text-xs text-emerald-400" data-app="spotify">← Accueil</button><span>Spotify</span><div class="w-4"></div></div><div class="p-4 text-center text-xs">JUL • J'oublie tout</div></div>
-      <div id="app-youtube" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20"><div class="p-3 bg-red-600 flex justify-between"><button class="app-back-btn text-xs" data-app="youtube">← Accueil</button><span>YouTube</span><div class="w-4"></div></div><div class="p-4 text-xs">Top 10 Buts ⚽</div></div>
-      <div id="app-tiktok" class="app-screen hidden flex-col h-full bg-black text-white z-20"><div class="p-3 bg-black flex justify-between"><button class="app-back-btn text-xs text-cyan-400" data-app="tiktok">← Accueil</button><span>TikTok</span><div class="w-4"></div></div><div class="p-4 text-xs">@skate_pro_fr</div></div>
-      <div id="app-discord" class="app-screen hidden flex-col h-full bg-[#313338] text-white z-20"><div class="p-3 bg-[#2b2d31] flex justify-between"><button class="app-back-btn text-xs text-indigo-400" data-app="discord">← Accueil</button><span>Discord</span><div class="w-4"></div></div><div class="p-4 text-xs">Lucas: Call of ce soir ?</div></div>
-      <div id="app-vinted" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20"><div class="p-3 bg-teal-600 flex justify-between"><button class="app-back-btn text-xs" data-app="vinted">← Accueil</button><span>Vinted</span><div class="w-4"></div></div><div class="p-4 text-xs">Sweat Thrasher</div></div>
-      <div id="app-settings" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20"><div class="p-3 bg-slate-900 flex justify-between"><button class="app-back-btn text-xs text-blue-400" data-app="settings">← Accueil</button><span>Réglages</span><div class="w-4"></div></div><div class="p-4 text-xs">iPhone de Léo (iOS 17)</div></div>
-      <div id="app-phone" class="app-screen hidden flex-col h-full bg-slate-900 text-white z-20"><div class="p-3 bg-slate-900 flex justify-between"><button class="app-back-btn text-xs text-green-400" data-app="phone">← Accueil</button><span>Téléphone</span><div class="w-4"></div></div><div class="p-4 text-xs">Maman ❤️ • 12:20</div></div>
 
     </div>
 

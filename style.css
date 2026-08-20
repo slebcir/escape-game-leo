@@ -1,4 +1,4 @@
-/* Custom Styles for Virtual Smartphone OS - Fix Instagram & Pong */
+/* Custom Styles for Virtual Smartphone OS - Scenario & UI Overhaul */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -82,6 +82,22 @@ body {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* Push Notification Banner Animation */
+.push-banner {
+  animation: slideDownPush 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownPush {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 

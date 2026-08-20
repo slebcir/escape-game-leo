@@ -1,129 +1,114 @@
-# Scenario et Contenus Textuels - Escape Game AVK (Téléphone de Léo)
+# Scénario et Contenus Textuels - Escape Game AVK (Smartphone de Léo)
 
-Ce document répertorie l'ensemble des données textuelles, notifications, historiques et contenus multimédias à intégrer dans l'interface du téléphone virtuel de Léo (15 ans).
-
----
-
-## 1. Les 5 Vraies Erreurs (Indices du Sang Trop Liquide / Surdosage AVK)
-
-### VRAI-01 | Automédication AINS (Ibuprofène)
-* **Application :** WhatsApp
-* **Aperçu dans la liste des chats :** "Lucas : Propre, vas-y à toute au foot..."
-* **Badge de notification :** Aucun (message lu)
-* **Fil de discussion (Lucas) :**
-  * `13:40` - **Lucas :** Wsh frérot t'es où ? T'as raté le cours de français
-  * `13:42` - **Léo :** Je sors de chez le dentiste gros, j'avais une rage de dent horrible toute la nuit 😭
-  * `13:43` - **Lucas :** Ah la galère... il t'a filé un truc ?
-  * `13:45` - **Léo :** Ouais mais l'ordonnance mettait trop de temps à la pharmacie. Du coup j'ai pris 2 Ibuprofène 400mg du placard de mon frère ce matin et 1 ce midi, ça soulage de fou !
-  * `13:46` - **Lucas :** Propre, vas-y à toute au foot cet aprem.
-* **Impact Médical :** L'Ibuprofène (AINS) déplace les AVK de leurs protéines liaisons et augmente le risque d'hémorragie digestive.
-* **Source :** [HAS - Bon usage des médicaments antivitamines K (AVK)](https://www.has-sante.fr/jcms/c_703816/fr/les-antivitamines-k-avk)
+Ce document répertorie l'ensemble des données textuelles, notifications, historiques et contenus multimédias intégrés dans l'interface du téléphone virtuel de Léo (15 ans).
 
 ---
 
-### VRAI-02 | Doublement de dose après un oubli
-* **Application :** Notes
-* **Titre de la note :** *Penses bêtes / Traitement*
-* **Horodatage de modification :** Aujourd'hui, 07:32
-* **Contenu de la note :**
-  > **Hier - 23:45**
-  > Mince, oublié de prendre le cachet de 20h... Trop saoulé.
-  >
-  > **Ce matin - 07:30**
-  > Bon du coup j'ai pris 2 comprimés ce matin au réveil pour rattraper la dose manquée d'hier avant d'aller en cours. Faut pas que je loupe mon traitement.
-* **Impact Médical :** Il ne faut jamais doubler la dose sous AVK pour compenser un oubli. Cela provoque un pic plasmatique direct et un surdosage massif.
-* **Source :** [Pharmacologie Médicale - Anti-vitamines K](https://pharmacomedicale.org/medicaments/par-specialites/item/anticoagulants-par-voie-orale-inhibition-indirecte-de-la-synthese-des-facteurs-de-la-coagulation-vitamine-k-dependants-avk)
+## 1. Les 6 Comportements Alarmants / Vraies Pistes (Risque Hémorragique ou Traumatique Majeur sous AVK)
 
----
-
-### VRAI-03 | Inhibition enzymatique par le Jus de Pamplemousse
-* **Application :** Instagram
-* **Type de post :** Publication Feed (ou Story à la une "My Life")
-* **Image associée :** `assets/images/pamplemousse.jpg` (Verre de jus rose sur une table)
+### 🔴 ALARME-01 | Interaction Alimentaire Majeure : Jus de Pamplemousse
+* **Application :** Instagram (`#app-instagram`)
+* **Emplacement :** Post Feed & Story de `@leo_lbr`
+* **Visuel :** Photo de verres de jus d'agrumes rose vif trinquant sur une terrasse ensoleillée (`assets/images/pamplemousse.jpg`).
 * **Légende :**
-  > **@leo_lbr :** On commence la semaine avec la nouvelle cure Detox 🍊🥤 1 grand verre de pur jus de pamplemousse frais tous les matins depuis 4 jours ! Objectif pleine forme 💪 #HealthyLife #Detox #MorningRoutine
-* **Commentaires :**
-  * **@thomas_bt :** Stylé ! Ça pique pas trop le matin ?
-  * **@leo_lbr :** *@thomas_bt* Au début si, mais on s'habitue trop vite haha
-* **Impact Médical :** Le jus de pamplemousse inhibe le cytochrome CYP3A4/CYP2C9. L'AVK est moins dégradé et s'accumule dans le sang.
-* **Source :** [ANSM - Interactions médicamenteuses et jus de pamplemousse](https://ansm.sante.fr)
+  > « Pause terrasse avec l'équipe 🍊🥤 Toast au pur jus de pamplemousse pressé ! La base tous les jours en ce moment ☀️ #Terrasse #Detox #PamplemousseAddict »
+* **Commentaire :** `@thomas_bt`: « Tu tournes qu'à ça en ce moment frérot haha » — `@leo_lbr`: « C'est trop addictif ! »
+* **Impact Médical :** Le jus de pamplemousse est un inhibiteur puissant du cytochrome CYP3A4/CYP2C9. Il ralentit l'élimination des AVK et provoque un surdosage massif (risque d'hémorragie).
 
 ---
 
-### VRAI-04 | Jeûne drastique de 3 jours (Suppression de la Vitamine K)
-* **Application :** Chrome / Safari (Historique de recherche)
-* **Affichage de l'historique (Du plus récent au plus ancien) :**
-  * `Aujourd'hui - 12:05` | `coupe faim naturel efficace pas cher`
-  * `Aujourd'hui - 08:12` | `deuxieme jour de jeune sensation de vertige normal ?`
-  * `Hier - 21:30` | `comment tenir un jeune sans rien manger juste de l eau`
-  * `Hier - 21:18` | `jeune hydrique 72h effet sur le corps`
-  * `Hier - 21:14` | `combien de kilos on perd en faisant un jeune de 3 jours`
-* **Impact Médical :** Le jeûne total coupe l'apport alimentaire en vitamine K. La dose d'AVK n'est plus freinée, l'INR s'envole (sang trop liquide).
-* **Source :** [HAS - Prise en charge des surdosages en AVK](https://www.has-sante.fr/jcms/c_703816/fr/les-antivitamines-k-avk)
+### 🔴 ALARME-02 | Sport de Combat : Entraînement de Muay Thaï (Boxe Thaï)
+* **Application :** WhatsApp (`#app-whatsapp`)
+* **Discussion :** Sofiane (Boxe / Club)
+* **Contenu textuel :**
+  > **Sofiane :** Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !  
+  > **Léo :** Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.
+* **Impact Médical :** Les sports de combat à coups portés (boxe, MMA) sont strictement contre-indiqués sous AVK en raison du risque de traumatismes crâniens, d'hématomes profonds et d'hémorragies internes gravissimes.
 
 ---
 
-### VRAI-05 | Boycott total des légumes verts (Rupture d'apport)
-* **Application :** Reddit
-* **Subreddit :** `r/ZeroLégumesFr`
-* **Titre du post :** *Adieu les légumes verts, meilleur choix de ma vie !*
-* **Auteur :** `u/Leo_Lbr` (Posté il y a 3 jours)
-* **Corps du post :**
-  > Franchement merci à cette commu ! Ça fait 1 semaine que j'ai complètement banni tous les légumes verts (salade, épinards, brocolis, courgettes) suite à vos articles sur les anti-nutriments. Mon médecin me disait d'en manger régulièrement à cause de mon traitement AVK, mais j'ai préféré tout stopper d'un coup. Je me sens tellement plus léger !
-* **Commentaires :**
-  * **u/DietGuru99 :** Bravo mec ! La salade c'est que de l'eau et des anti-nutriments de toute façon !
-* **Impact Médical :** Arrêter subitement la vitamine K alimentaire romp l'équilibre du traitement. Sans apport de vitamine K, la dose d'AVK devient surdosée.
-* **Source :** [Société Française d'Hématologie - Gestion des AVK](https://www.hematologie-sante.fr)
+### 🟡 ALARME-03 | Projet d'Acte Invasif : Demande de Piercing à l'Oreille
+* **Application :** Messages / SMS (`#app-messages`)
+* **Discussion :** Maman
+* **Contenu textuel :**
+  > **Léo :** Maman, avec les potes on a vu un perceur en ville, je peux me faire percer le lobe de l'oreille ce week-end stp ??  
+  > **Maman :** Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée au lycée, mais pas avant. On en reparle calmement ce soir à la maison.
+* **Impact Médical :** Tout acte invasif (piercing, tatouage, soins dentaires chirurgicaux) nécessite une prise en charge médicale préalable et l'arrêt/adaptation contrôlée du traitement anticoagulant pour éviter un saignement prolongé ou non contrôlé.
 
 ---
 
-## 2. Les 5 Fausses Erreurs (Distracteurs / Pièges)
-
-### FAUX-01 | Platée d'épinards et de brocolis
-* **Application :** Snapchat / Photos (`assets/images/brocolis.jpg`)
-* **Légende :** *Repas chez mamie à midi : Montagne d'épinards et de brocolis 🥦🟢 Faut bien manger ses légumes !*
-* **Motif du piège :** Un excès de vitamine K rend le sang **trop épais** (chute de l'INR), ce qui est l'inverse du problème de Léo (sang trop liquide).
-
-### FAUX-02 | Nuit blanche et fast-food
-* **Application :** WhatsApp (Chat avec Nathan)
-* **Message :** *Gros j'en peux plus, nuit blanche sur le nouveau jeu. On a commandé 2 pizzas à 2h du mat avec les gars 🍕💀*
-* **Motif du piège :** Hygiène de vie médiocre mais sans effet direct sur la coagulation ou l'INR.
-
-### FAUX-03 | Prise de Paracétamol (Doliprane) à dose normale
-* **Application :** Messages / SMS (Chat avec Maman)
-* **Message :** *Coucou Maman, oui j'ai pris 1 comprimé de Doliprane 500mg à midi pour mon mal de tête, ça va mieux.*
-* **Motif du piège :** Le Paracétamol est l'antalgique autorisé sous AVK à dose usuelle. À ne pas confondre avec l'Ibuprofène.
-
-### FAUX-04 | Oubli d'une dose sans rattrapage
-* **Application :** Notes (*Note du Mardi*)
-* **Texte :** *Oublié ma prise de 20h hier. La pharmacienne a dit de JAMAIS doubler la dose. Je reprends juste normalement ce soir.*
-* **Motif du piège :** C'est la **bonne conduite à tenir**. De plus, un oubli isolé rend le sang plus épais, pas plus liquide.
-
-### FAUX-05 | Footing léger de 4 km
-* **Application :** Strava (Activité enregistrée)
-* **Titre :** *Petit footing après les cours 🏃‍♂️ - 4.2 km - 25 min*
-* **Motif du piège :** L'exercice léger est autorisé. Seuls les sports de contact à risque de choc violent (rugby, boxe) sont déconseillés.
+### 🔴 ALARME-04 | Chutes & Traumatisme : Figures Extrêmes en Trottinette/Skate
+* **Application :** TikTok (`#app-tiktok`)
+* **Section :** Commentaires sous une vidéo de tricks extrêmes (Gap 10 marches en trottinette freestyle sans casque).
+* **Commentaire de Léo (`@leo_off`) :**
+  > « @lucas_skate viens on va tester le même saut sur les marches du conservatoire après les cours vendredi ! Je pose la figure direct 🔥 »
+* **Réponse de Lucas :** « T'es un grand malade, si tu tombes tu te tues mdr »
+* **Impact Médical :** Les figures acrobatiques urbaines sans casque et sans protection comportent un risque élevé de chutes violentes, traumatismes osseux et hématomes musculaires ou viscéraux sous anticoagulant.
 
 ---
 
-## 3. Contenu Neutre (Décoration et Réalisme de l'UI)
+### 🔴 ALARME-05 | Sport Mécanique Extrême : Initiation Motocross & Enduro
+* **Application :** YouTube (`#app-youtube`)
+* **Emplacement :** Onglet "Bibliothèque" $\rightarrow$ Vidéos Likées.
+* **Titre vidéo :** *STAGE MOTOCROSS & ENDURO EN FORÊT - TUTO POUR DÉBUTANTS*
+* **Commentaire écrit par Léo :**
+  > « Session réservée pour dimanche matin avec les cousins sur le circuit de cross, trop hâte d'envoyer les premiers sauts ! 🏍️💨 »
+* **Impact Médical :** Le motocross et les sports mécaniques tout-terrain présentent un risque très élevé de traumatismes graves à grande vitesse.
 
-### Messages SMS / WhatsApp Neutres
-1. **Groupe "Exposé Histoire" (3 messages non lus) :**
-   * *Sarah :* Vous avez fait la partie 2 sur la Révolution ?
-   * *Tom :* Moi j'ai fini la partie 1. Léo tu t'occupes de la conclusion ?
-2. **Discussion avec "Maman" :**
-   * *Maman :* Pense à prendre ton du pain en rentrant s'il te plaît !
-   * *Léo :* Ça marche je passe à la boulangerie.
-3. **Discussion avec "Maxime" (Gaming) :**
-   * *Maxime :* Chaud pour une partie de Call of ce soir à 21h ?
-   * *Léo :* Carreément, je me co après le repas.
+---
 
-### Application Notes (Autres notes neutres)
-* **Note 1 :** *Liste de cours : Cahier TP SVT, Calculatrice, Règle.*
-* **Note 2 :** *Code Wifi chez Lucas : Freebox_88A21B*
+### 🔴 ALARME-06 | Sport de Glisse à Risque : Ski Pistes Noires
+* **Application :** Chrome / Google Search (`#app-chrome`)
+* **Emplacement :** Onglets ouverts / Recherche.
+* **Onglets ouverts :**
+  1. `google.fr/search?q=location+skis+pistes+noires+station`
+  2. `chalet-alpes-vacances.com/reservation-groupe`
+  3. `google.fr/search?q=comment+eviter+les+bosses+sur+piste+noire+ski`
+* **Impact Médical :** Le ski de piste à haute vitesse sur pistes noires exigeantes présente un risque important de chutes, collisions et chocs violents.
 
-### Application Photos / Galerie
-* Photo d'un chat (`assets/images/cat.jpg`)
-* Screenshot d'un résultat de jeu vidéo (`assets/images/game_score.jpg`)
-* Photo de groupe au lycée (`assets/images/friends.jpg`)
+---
+
+## 2. Les 4 Comportements Sains / Fausses Pistes (Activités Sûres & Distracteurs)
+
+### 🟢 SAIN-01 | Activités Nautiques Douces : Baignade & Pédalo à la Mer
+* **Application :** Galerie Photos (`#app-photos`)
+* **Album :** "Vacances Sud 🏖️"
+* **Photos & Légendes :** Pédalo avec toboggan en mer, snorkeling masque et tuba au bord de l'eau, baignade tranquille et châteaux de sable.
+* **Motif :** Activités aquatiques de loisir sans risque de choc ou d'impact.
+
+---
+
+### 🟢 SAIN-02 | Soirée Bowling entre Amis
+* **Application :** Messenger (`#app-messenger`)
+* **Groupe :** "La Bande du Vendredi 🎳"
+* **Discussion :**
+  > **Maxime :** Bowling vendredi soir à 19h les gars ? On fait les équipes sur place au centre commercial !  
+  > **Léo :** Grave chaud, préparez-vous à perdre, je fais que des strikes !
+* **Motif :** Loisir en intérieur calme sans risque traumatique.
+
+---
+
+### 🟢 SAIN-03 | Match de Tennis Modéré
+* **Application :** Centre de Notifications / Push Message
+* **Notification Thomas :** 🎾 **Thomas** : « Ça te dit un tennis demain à 17h après les cours ? Je réserve le court n°3 si t'es chaud ! »  
+* **Réponse Léo :** « Carrément, je prends ma raquette ! »
+* **Motif :** Sport de raquette individuel sans contact physique direct autorise sous AVK.
+
+---
+
+### 🟢 SAIN-04 | Football Amical entre Potes
+* **Application :** Discord (`#app-discord`)
+* **Serveur :** "Lycée - 3ème B" $\rightarrow$ `#sport-et-sorties`
+* **Discussion :**
+  > **Enzo :** Petit match de foot au city stade à côté du bahut après les cours à 16h30, qui est là ?  
+  > **Léo :** Je suis là ! Je me mets en milieu de terrain.
+* **Motif :** Jeu de ballon récréatif modéré entre camarades sans engagement physique violent.
+
+---
+
+## 3. Contenus de Décoration et Immersion de l'UI
+
+* **Pronote / E-lyco (`#app-pronote`) :** Relevé de notes (Maths: 14/20, SVT: 16/20, Histoire: 11/20) + devoirs en Physique-Chimie.
+* **Spotify (`#app-spotify`) :** Titre affiché "Tiakola / SDM - Mode Avion" + playlists Rap Fr, Drill, Chill.
+* **Mail (`#app-mail`) :** Confirmations de commandes de vêtements, Newsletter PS Store, notifications Pronote.
+* **Pong Game (`#app-pong`) :** Jeu arcade HTML5 Canvas sur la Page 2.

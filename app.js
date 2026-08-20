@@ -1,5 +1,5 @@
 /**
- * Smartphone Virtuel de Léo - Application SPA Logic (Instagram Fix & Pong Game)
+ * Smartphone Virtuel de Léo - Application SPA Logic (Refonte Scénaristique)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,6 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const appIcons = document.querySelectorAll('.app-icon');
   const appBackBtns = document.querySelectorAll('.app-back-btn');
   const homeIndicator = document.getElementById('home-indicator');
+
+  // Push Notification Elements (Tennis Thomas - Comportement 9)
+  const pushBanner = document.getElementById('push-notification-banner');
+  const pushModal = document.getElementById('push-modal');
+  const pushModalClose = document.getElementById('push-modal-close');
+
+  if (pushBanner && pushModal) {
+    pushBanner.addEventListener('click', () => {
+      pushModal.classList.remove('hidden');
+      pushModal.classList.add('flex');
+    });
+  }
+
+  if (pushModalClose && pushModal) {
+    pushModalClose.addEventListener('click', () => {
+      pushModal.classList.add('hidden');
+      pushModal.classList.remove('flex');
+    });
+  }
 
   // -------------------------------------------------------------
   // 1. CARROUSEL D'ACCUEIL - SWIPE GLOBAL
@@ -104,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetApp.classList.remove('hidden');
     targetApp.classList.add('flex');
 
-    // Masquer le badge
+    // Masquer le badge si présent
     const icon = document.querySelector(`.app-icon[data-app="${appName}"]`);
     if (icon) {
       const badge = icon.querySelector('.app-badge');
@@ -113,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     resetAppToRoot(appName);
 
-    // Lancer Pong si c'est l'app Pong
     if (appName === 'pong') {
       startPongGame();
     } else {
@@ -135,27 +153,14 @@ document.addEventListener('DOMContentLoaded', () => {
     appSubState[appName] = 'root';
     updateBackBtnLabel(appName, 'Accueil');
 
-    if (appName === 'chrome') {
-      document.getElementById('chrome-home-view')?.classList.remove('hidden');
-      document.getElementById('chrome-history-view')?.classList.add('hidden');
-      document.getElementById('chrome-menu-dropdown')?.classList.add('hidden');
-    } else if (appName === 'instagram') {
+    if (appName === 'instagram') {
       document.getElementById('insta-story-modal')?.classList.add('hidden');
-    } else if (appName === 'reddit') {
-      document.getElementById('reddit-communities-view')?.classList.remove('hidden');
-      document.getElementById('reddit-feed-view')?.classList.add('hidden');
     } else if (appName === 'whatsapp') {
       document.getElementById('wa-chat-list')?.classList.remove('hidden');
       document.getElementById('wa-chat-detail')?.classList.add('hidden');
     } else if (appName === 'messages') {
       document.getElementById('msg-chat-list')?.classList.remove('hidden');
       document.getElementById('msg-chat-detail')?.classList.add('hidden');
-    } else if (appName === 'notes') {
-      document.getElementById('notes-list-view')?.classList.remove('hidden');
-      document.getElementById('note-detail-view')?.classList.add('hidden');
-    } else if (appName === 'photos') {
-      document.getElementById('photos-grid-view')?.classList.remove('hidden');
-      document.getElementById('photos-modal-view')?.classList.add('hidden');
     }
   }
 
@@ -190,38 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 3. CHROME : MENU 3 POINTS (⋮) -> HISTORIQUE
-  // -------------------------------------------------------------
-  const chromeMenuBtn = document.getElementById('chrome-menu-btn');
-  const chromeMenuDropdown = document.getElementById('chrome-menu-dropdown');
-  const chromeMenuHistoryItem = document.getElementById('chrome-menu-history-item');
-  const chromeHomeView = document.getElementById('chrome-home-view');
-  const chromeHistoryView = document.getElementById('chrome-history-view');
-
-  if (chromeMenuBtn && chromeMenuDropdown) {
-    chromeMenuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      chromeMenuDropdown.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', () => {
-      chromeMenuDropdown?.classList.add('hidden');
-    });
-  }
-
-  if (chromeMenuHistoryItem) {
-    chromeMenuHistoryItem.addEventListener('click', () => {
-      chromeMenuDropdown?.classList.add('hidden');
-      chromeHomeView?.classList.add('hidden');
-      chromeHistoryView?.classList.remove('hidden');
-      chromeHistoryView?.classList.add('flex');
-      appSubState['chrome'] = 'subview';
-      updateBackBtnLabel('chrome', 'Google');
-    });
-  }
-
-  // -------------------------------------------------------------
-  // 4. INSTAGRAM : STORIES CLIQUABLES & FEED
+  // 3. INSTAGRAM (STORY PAMPLEMOUSSE - COMPORTEMENT 1)
   // -------------------------------------------------------------
   const instaStoryItems = document.querySelectorAll('.insta-story-item');
   const instaStoryModal = document.getElementById('insta-story-modal');
@@ -240,62 +214,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (instaStoryClose) {
-    instaStoryClose.addEventListener('click', () => {
-      resetAppToRoot('instagram');
-    });
+    instaStoryClose.addEventListener('click', () => resetAppToRoot('instagram'));
   }
 
   // -------------------------------------------------------------
-  // 5. REDDIT : SUBREDDIT r/ZeroLégumesFr
-  // -------------------------------------------------------------
-  const redditCommItems = document.querySelectorAll('.reddit-comm-item');
-  const redditCommunitiesView = document.getElementById('reddit-communities-view');
-  const redditFeedView = document.getElementById('reddit-feed-view');
-  const redditBackToComm = document.getElementById('reddit-back-to-comm');
-
-  redditCommItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const subName = item.getAttribute('data-sub');
-      if (subName === 'zerolegumes') {
-        redditCommunitiesView?.classList.add('hidden');
-        redditFeedView?.classList.remove('hidden');
-        redditFeedView?.classList.add('flex');
-        appSubState['reddit'] = 'subview';
-        updateBackBtnLabel('reddit', 'Communautés');
-      }
-    });
-  });
-
-  if (redditBackToComm) {
-    redditBackToComm.addEventListener('click', () => resetAppToRoot('reddit'));
-  }
-
-  // -------------------------------------------------------------
-  // 6. WHATSAPP / MESSAGES / NOTES / PHOTOS
+  // 4. WHATSAPP (SOFIANE - BOXE THAÏ / MUAY THAÏ - COMPORTEMENT 2)
   // -------------------------------------------------------------
   const waChatItems = document.querySelectorAll('.wa-chat-item');
   const waChatList = document.getElementById('wa-chat-list');
   const waChatDetail = document.getElementById('wa-chat-detail');
   const waBackToList = document.getElementById('wa-back-to-list');
   const waContactName = document.getElementById('wa-contact-name');
+  const waContactAvatar = document.getElementById('wa-contact-avatar');
   const waMessagesContainer = document.getElementById('wa-messages-container');
 
   const waData = {
+    sofiane: {
+      name: "Sofiane (Boxe 🥊)", avatar: "SO", color: "bg-red-700",
+      messages: [
+        { time: "13:40", sender: "Sofiane", text: "Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !", incoming: true },
+        { time: "13:45", sender: "Léo", text: "Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.", incoming: false }
+      ]
+    },
     lucas: {
       name: "Lucas (Lycée)", avatar: "LU", color: "bg-emerald-700",
       messages: [
-        { time: "13:40", sender: "Lucas", text: "Wsh frérot t'es où ? T'as raté le cours de français", incoming: true },
-        { time: "13:42", sender: "Léo", text: "Je sors de chez le dentiste gros, j'avais une rage de dent horrible toute la nuit 😭", incoming: false },
-        { time: "13:43", sender: "Lucas", text: "Ah la galère... il t'a filé un truc ?", incoming: true },
-        { time: "13:45", sender: "Léo", text: "Ouais mais l'ordonnance mettait trop de temps à la pharmacie. Du coup j'ai pris 2 Ibuprofène 400mg du placard de mon frère ce matin et 1 ce midi, ça soulage de fou !", incoming: false },
-        { time: "13:46", sender: "Lucas", text: "Propre, vas-y à toute au foot cet aprem.", incoming: true }
-      ]
-    },
-    nathan: {
-      name: "Nathan", avatar: "NA", color: "bg-indigo-600",
-      messages: [
-        { time: "02:15", sender: "Léo", text: "Gros j'en peux plus, nuit blanche sur le nouveau jeu. On a commandé 2 pizzas à 2h du mat avec les gars 🍕💀", incoming: false },
-        { time: "07:10", sender: "Nathan", text: "Abusé tu vas dormir en cours de SVT tout à l'heure.", incoming: true }
+        { time: "11:15", sender: "Lucas", text: "On se fait un FIFA après les cours ?", incoming: true },
+        { time: "11:20", sender: "Léo", text: "Grave, je passe chez toi à 17h.", incoming: false }
       ]
     }
   };
@@ -307,6 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!chat) return;
 
       if (waContactName) waContactName.textContent = chat.name;
+      if (waContactAvatar) {
+        waContactAvatar.textContent = chat.avatar;
+        waContactAvatar.className = `w-7 h-7 rounded-full ${chat.color} flex items-center justify-center text-xs font-bold text-white`;
+      }
       if (waMessagesContainer) {
         waMessagesContainer.innerHTML = chat.messages.map(msg => `
           <div class="flex flex-col ${msg.incoming ? 'items-start max-w-[82%]' : 'items-end ml-auto max-w-[82%]' }">
@@ -328,7 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (waBackToList) waBackToList.addEventListener('click', () => resetAppToRoot('whatsapp'));
 
-  // SMS
+  // -------------------------------------------------------------
+  // 5. MESSAGES / SMS (MAMAN - PIERCING OREILLE - COMPORTEMENT 3)
+  // -------------------------------------------------------------
   const msgChatItems = document.querySelectorAll('.msg-chat-item');
   const msgChatList = document.getElementById('msg-chat-list');
   const msgChatDetail = document.getElementById('msg-chat-detail');
@@ -339,8 +290,18 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', () => {
       if (msgMessagesContainer) {
         msgMessagesContainer.innerHTML = `
-          <div class="flex flex-col items-start max-w-[80%]"><div class="bg-slate-200 text-slate-900 rounded-2xl p-2.5"><p class="text-xs">Coucou Léo, ton mal de tête ça va mieux ?</p></div><span class="text-[9px] text-slate-400 mt-1">12:10</span></div>
-          <div class="flex flex-col items-end ml-auto max-w-[80%]"><div class="bg-blue-500 text-white rounded-2xl p-2.5"><p class="text-xs">Oui maman j'ai pris 1 comprimé de Doliprane 500mg après le repas comme tu m'as dit, ça va beaucoup mieux.</p></div><span class="text-[9px] text-slate-400 mt-1">12:15</span></div>
+          <div class="flex flex-col items-end ml-auto max-w-[80%]">
+            <div class="bg-blue-500 text-white rounded-2xl p-2.5">
+              <p class="text-xs">Maman, avec les potes on a vu un perceur en ville, je peux me faire percer le lobe de l'oreille ce week-end stp ??</p>
+            </div>
+            <span class="text-[9px] text-slate-400 mt-1">12:10</span>
+          </div>
+          <div class="flex flex-col items-start max-w-[80%]">
+            <div class="bg-slate-200 text-slate-900 rounded-2xl p-2.5">
+              <p class="text-xs">Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée au lycée, mais pas avant. On en reparle calmement ce soir à la maison.</p>
+            </div>
+            <span class="text-[9px] text-slate-400 mt-1">12:15</span>
+          </div>
         `;
       }
       msgChatList?.classList.add('hidden');
@@ -353,66 +314,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (msgBackToList) msgBackToList.addEventListener('click', () => resetAppToRoot('messages'));
 
-  // NOTES
-  const noteItems = document.querySelectorAll('.note-item');
-  const notesListView = document.getElementById('notes-list-view');
-  const noteDetailView = document.getElementById('note-detail-view');
-  const noteBackToList = document.getElementById('note-back-to-list');
-  const noteDetailTitle = document.getElementById('note-detail-title');
-  const noteDetailDate = document.getElementById('note-detail-date');
-  const noteDetailContent = document.getElementById('note-detail-content');
-
-  const notesData = {
-    'double-dose': {
-      title: "Penses bêtes / Traitement", date: "Aujourd'hui, 07:32",
-      content: `<p class="font-bold text-slate-900 mb-1">Hier - 23:45</p><p class="mb-3">Oublié de prendre le cachet de 20h... Trop saoulé.</p><p class="font-bold text-slate-900 mb-1">Ce matin - 07:30</p><p>Bon du coup j'ai pris 2 comprimés ce matin au réveil pour rattraper la dose d'hier avant d'aller en cours. Faut pas que je loupe mon traitement.</p>`
-    },
-    'oubli-gere': {
-      title: "Rappel Mardi", date: "Mardi 07 Mai",
-      content: `<p>Mince j'ai oublié ma prise de 20h...</p><p class="mt-2">Bon la pharmacienne m'a bien dit de JAMAIS doubler la dose le lendemain. Tant pis, je reprends ma dose normale ce soir à 20h sans rien changer.</p>`
-    }
-  };
-
-  noteItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const noteId = item.getAttribute('data-note');
-      const note = notesData[noteId];
-      if (!note) return;
-
-      if (noteDetailTitle) noteDetailTitle.textContent = note.title;
-      if (noteDetailDate) noteDetailDate.textContent = note.date;
-      if (noteDetailContent) noteDetailContent.innerHTML = note.content;
-
-      notesListView?.classList.add('hidden');
-      noteDetailView?.classList.remove('hidden');
-      noteDetailView?.classList.add('flex');
-      appSubState['notes'] = 'subview';
-      updateBackBtnLabel('notes', 'Notes');
-    });
-  });
-
-  if (noteBackToList) noteBackToList.addEventListener('click', () => resetAppToRoot('notes'));
-
-  // PHOTOS
-  const photoThumbs = document.querySelectorAll('.photo-thumb');
-  const photosGridView = document.getElementById('photos-grid-view');
-  const photosModalView = document.getElementById('photos-modal-view');
-  const photoCloseModal = document.getElementById('photo-close-modal');
-
-  photoThumbs.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-      photosGridView?.classList.add('hidden');
-      photosModalView?.classList.remove('hidden');
-      photosModalView?.classList.add('flex');
-      appSubState['photos'] = 'subview';
-      updateBackBtnLabel('photos', 'Galerie');
-    });
-  });
-
-  if (photoCloseModal) photoCloseModal.addEventListener('click', () => resetAppToRoot('photos'));
-
   // -------------------------------------------------------------
-  // 7. MINI-JEU PONG JOUABLE EN CANVAS HTML5
+  // 6. MINI-JEU PONG JOUABLE EN CANVAS HTML5
   // -------------------------------------------------------------
   const canvas = document.getElementById('pongCanvas');
   const pongStartBtn = document.getElementById('pong-start-btn');
@@ -422,7 +325,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let pongAnimId = null;
   let isPongRunning = false;
 
-  // Propriétés du jeu
   const gameWidth = 320;
   const gameHeight = 380;
 
@@ -446,7 +348,6 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = gameHeight;
     ctx = canvas.getContext('2d');
 
-    // Contrôles Souris & Tactile
     canvas.addEventListener('mousemove', (e) => {
       const rect = canvas.getBoundingClientRect();
       const relativeX = e.clientX - rect.left;
@@ -476,11 +377,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function updatePong() {
     if (!isPongRunning) return;
 
-    // Déplacement de la balle
     ballX += ballSpeedX;
     ballY += ballSpeedY;
 
-    // IA Bot (suivi imparfait)
     const botCenter = botX + paddleWidth / 2;
     if (botCenter < ballX - 10) {
       botX += 2.8;
@@ -489,35 +388,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     botX = Math.max(0, Math.min(gameWidth - paddleWidth, botX));
 
-    // Rebonds murs gauche/droit
     if (ballX - ballRadius <= 0 || ballX + ballRadius >= gameWidth) {
       ballSpeedX = -ballSpeedX;
     }
 
-    // Rebond Raquette Bot (Haut)
     if (ballY - ballRadius <= paddleHeight + 10) {
       if (ballX >= botX && ballX <= botX + paddleWidth) {
-        ballSpeedY = Math.abs(ballSpeedY); // Rebond vers le bas
+        ballSpeedY = Math.abs(ballSpeedY);
         ballSpeedX += (Math.random() - 0.5) * 0.8;
       }
     }
 
-    // Rebond Raquette Joueur (Bas)
     if (ballY + ballRadius >= gameHeight - paddleHeight - 10) {
       if (ballX >= playerX && ballX <= playerX + paddleWidth) {
-        ballSpeedY = -Math.abs(ballSpeedY); // Rebond vers le haut
+        ballSpeedY = -Math.abs(ballSpeedY);
         ballSpeedX += (Math.random() - 0.5) * 0.8;
       }
     }
 
-    // Point Bot (si la balle dépasse le bas)
     if (ballY - ballRadius > gameHeight) {
       botScore++;
       updatePongScore();
       resetBall();
     }
 
-    // Point Joueur (si la balle dépasse le haut)
     if (ballY + ballRadius < 0) {
       playerScore++;
       updatePongScore();
@@ -531,11 +425,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function drawPong() {
     if (!ctx) return;
 
-    // Effacer le canvas (fond sombre)
     ctx.fillStyle = '#020617';
     ctx.fillRect(0, 0, gameWidth, gameHeight);
 
-    // Ligne centrale en pointillé
     ctx.strokeStyle = '#1e293b';
     ctx.lineWidth = 2;
     ctx.setLineDash([6, 6]);
@@ -545,15 +437,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Raquette Bot (Haut - Violet)
     ctx.fillStyle = '#a855f7';
     ctx.fillRect(botX, 10, paddleWidth, paddleHeight);
 
-    // Raquette Joueur (Bas - Vert Émeraude)
     ctx.fillStyle = '#10b981';
     ctx.fillRect(playerX, gameHeight - paddleHeight - 10, paddleWidth, paddleHeight);
 
-    // Balle (Blanche lumineuse)
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
     ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
