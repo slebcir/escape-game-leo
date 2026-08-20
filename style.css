@@ -1,4 +1,4 @@
-/* Custom Styles for Virtual Smartphone OS - Scenario & UI Overhaul */
+/* Custom Styles for Virtual Smartphone OS - Notification Center & Badge Fix */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -85,20 +85,28 @@ body {
   }
 }
 
-/* Push Notification Banner Animation */
-.push-banner {
-  animation: slideDownPush 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* App Notification Badge Fix (CIRCULAIRE NON DÉFORMÉ) */
+.app-badge {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  background-color: #ef4444;
+  color: #ffffff;
+  border: 2px solid #0f172a;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
-@keyframes slideDownPush {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* Notification Center Dropdown Panel */
+#notification-center {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
 }
 
 /* Instagram Image Fixes */

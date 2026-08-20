@@ -59,11 +59,11 @@ Ce document répertorie l'ensemble des données textuelles, notifications, histo
 
 ### 🔴 ALARME-06 | Sport de Glisse à Risque : Ski Pistes Noires
 * **Application :** Chrome / Google Search (`#app-chrome`)
-* **Emplacement :** Onglets ouverts / Recherche.
-* **Onglets ouverts :**
-  1. `google.fr/search?q=location+skis+pistes+noires+station`
-  2. `chalet-alpes-vacances.com/reservation-groupe`
-  3. `google.fr/search?q=comment+eviter+les+bosses+sur+piste+noire+ski`
+* **Emplacement :** Page d'accueil Google neutre $\rightarrow$ Bouton Menu `⋮` $\rightarrow$ Historique de recherche.
+* **Historique des recherches :**
+  1. `Aujourd'hui - 11:45` | 🔍 `location skis pistes noires station`
+  2. `Aujourd'hui - 11:42` | 🔍 `comment eviter les bosses sur piste noire ski`
+  3. `Hier - 20:15` | 🔍 `chalet alpes vacances reservation groupe`
 * **Impact Médical :** Le ski de piste à haute vitesse sur pistes noires exigeantes présente un risque important de chutes, collisions et chocs violents.
 
 ---
@@ -89,10 +89,10 @@ Ce document répertorie l'ensemble des données textuelles, notifications, histo
 ---
 
 ### 🟢 SAIN-03 | Match de Tennis Modéré
-* **Application :** Centre de Notifications / Push Message
+* **Application :** Centre de Notifications Déroulant (Swipe down depuis la barre de statut)
 * **Notification Thomas :** 🎾 **Thomas** : « Ça te dit un tennis demain à 17h après les cours ? Je réserve le court n°3 si t'es chaud ! »  
 * **Réponse Léo :** « Carrément, je prends ma raquette ! »
-* **Motif :** Sport de raquette individuel sans contact physique direct autorise sous AVK.
+* **Motif :** Sport de raquette individuel sans contact physique direct autorisé sous AVK.
 
 ---
 

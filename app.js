@@ -1,5 +1,5 @@
 /**
- * Smartphone Virtuel de Léo - Application SPA Logic (Refonte Scénaristique)
+ * Smartphone Virtuel de Léo - Application SPA Logic (Notification Center & Chrome Hardening)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,13 +21,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const appBackBtns = document.querySelectorAll('.app-back-btn');
   const homeIndicator = document.getElementById('home-indicator');
 
-  // Push Notification Elements (Tennis Thomas - Comportement 9)
-  const pushBanner = document.getElementById('push-notification-banner');
+  // -------------------------------------------------------------
+  // 1. CENTRE DE NOTIFICATIONS DÉROULANT
+  // -------------------------------------------------------------
+  const statusBar = document.getElementById('status-bar');
+  const notifCenter = document.getElementById('notification-center');
+  const notifCenterClose = document.getElementById('notif-center-close');
+  const notifCenterHandle = document.getElementById('notif-center-handle');
+  const notifCardTennis = document.getElementById('notif-card-tennis');
+
   const pushModal = document.getElementById('push-modal');
   const pushModalClose = document.getElementById('push-modal-close');
 
-  if (pushBanner && pushModal) {
-    pushBanner.addEventListener('click', () => {
+  function openNotifCenter() {
+    if (notifCenter) {
+      notifCenter.classList.remove('hidden');
+      notifCenter.classList.add('flex');
+    }
+  }
+
+  function closeNotifCenter() {
+    if (notifCenter) {
+      notifCenter.classList.add('hidden');
+      notifCenter.classList.remove('flex');
+    }
+  }
+
+  if (statusBar) statusBar.addEventListener('click', openNotifCenter);
+  if (notifCenterClose) notifCenterClose.addEventListener('click', closeNotifCenter);
+  if (notifCenterHandle) notifCenterHandle.addEventListener('click', closeNotifCenter);
+
+  if (notifCardTennis && pushModal) {
+    notifCardTennis.addEventListener('click', () => {
+      closeNotifCenter();
       pushModal.classList.remove('hidden');
       pushModal.classList.add('flex');
     });
@@ -41,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 1. CARROUSEL D'ACCUEIL - SWIPE GLOBAL
+  // 2. CARROUSEL D'ACCUEIL - SWIPE GLOBAL
   // -------------------------------------------------------------
   let currentPage = 1;
 
@@ -63,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dot1) dot1.addEventListener('click', () => goToPage(1));
   if (dot2) dot2.addEventListener('click', () => goToPage(2));
 
-  // GESTION DU SWIPE
+  // GESTION DU SWIPE SUR L'ÉCRAN D'ACCUEIL
   let touchStartX = 0;
   let touchStartY = 0;
   let isMouseDown = false;
@@ -104,11 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 2. GESTION NAVIGATION ET HIÉRARCHIE DES APPS
+  // 3. GESTION NAVIGATION ET HIÉRARCHIE DES APPS
   // -------------------------------------------------------------
   const appSubState = {};
 
   function openApp(appName) {
+    closeNotifCenter();
     const targetApp = document.getElementById(`app-${appName}`);
     if (!targetApp) return;
 
@@ -123,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     targetApp.classList.remove('hidden');
     targetApp.classList.add('flex');
 
-    // Masquer le badge si présent
     const icon = document.querySelector(`.app-icon[data-app="${appName}"]`);
     if (icon) {
       const badge = icon.querySelector('.app-badge');
@@ -140,6 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function closeAllApps() {
+    closeNotifCenter();
     stopPongGame();
     appScreens.forEach(screen => {
       screen.classList.add('hidden');
@@ -153,7 +180,13 @@ document.addEventListener('DOMContentLoaded', () => {
     appSubState[appName] = 'root';
     updateBackBtnLabel(appName, 'Accueil');
 
-    if (appName === 'instagram') {
+    if (appName === 'chrome') {
+      document.getElementById('chrome-home-view')?.classList.remove('hidden');
+      document.getElementById('chrome-home-view')?.classList.add('flex');
+      document.getElementById('chrome-history-view')?.classList.add('hidden');
+      document.getElementById('chrome-history-view')?.classList.remove('flex');
+      document.getElementById('chrome-menu-dropdown')?.classList.add('hidden');
+    } else if (appName === 'instagram') {
       document.getElementById('insta-story-modal')?.classList.add('hidden');
     } else if (appName === 'whatsapp') {
       document.getElementById('wa-chat-list')?.classList.remove('hidden');
@@ -195,7 +228,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 3. INSTAGRAM (STORY PAMPLEMOUSSE - COMPORTEMENT 1)
+  // 4. CHROME : PARCOURS MENU 3 POINTS (⋮) -> HISTORIQUE
+  // -------------------------------------------------------------
+  const chromeMenuBtn = document.getElementById('chrome-menu-btn');
+  const chromeMenuDropdown = document.getElementById('chrome-menu-dropdown');
+  const chromeMenuHistoryItem = document.getElementById('chrome-menu-history-item');
+  const chromeHomeView = document.getElementById('chrome-home-view');
+  const chromeHistoryView = document.getElementById('chrome-history-view');
+
+  if (chromeMenuBtn && chromeMenuDropdown) {
+    chromeMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      chromeMenuDropdown.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', () => {
+      chromeMenuDropdown?.classList.add('hidden');
+    });
+  }
+
+  if (chromeMenuHistoryItem) {
+    chromeMenuHistoryItem.addEventListener('click', () => {
+      chromeMenuDropdown?.classList.add('hidden');
+      chromeHomeView?.classList.add('hidden');
+      chromeHomeView?.classList.remove('flex');
+      chromeHistoryView?.classList.remove('hidden');
+      chromeHistoryView?.classList.add('flex');
+      appSubState['chrome'] = 'subview';
+      updateBackBtnLabel('chrome', 'Google');
+    });
+  }
+
+  // -------------------------------------------------------------
+  // 5. INSTAGRAM (STORY PAMPLEMOUSSE - COMPORTEMENT 1)
   // -------------------------------------------------------------
   const instaStoryItems = document.querySelectorAll('.insta-story-item');
   const instaStoryModal = document.getElementById('insta-story-modal');
@@ -218,55 +283,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 4. WHATSAPP (SOFIANE - BOXE THAÏ / MUAY THAÏ - COMPORTEMENT 2)
+  // 6. WHATSAPP (SOFIANE - BOXE THAÏ - COMPORTEMENT 2)
   // -------------------------------------------------------------
   const waChatItems = document.querySelectorAll('.wa-chat-item');
   const waChatList = document.getElementById('wa-chat-list');
   const waChatDetail = document.getElementById('wa-chat-detail');
   const waBackToList = document.getElementById('wa-back-to-list');
   const waContactName = document.getElementById('wa-contact-name');
-  const waContactAvatar = document.getElementById('wa-contact-avatar');
   const waMessagesContainer = document.getElementById('wa-messages-container');
-
-  const waData = {
-    sofiane: {
-      name: "Sofiane (Boxe 🥊)", avatar: "SO", color: "bg-red-700",
-      messages: [
-        { time: "13:40", sender: "Sofiane", text: "Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !", incoming: true },
-        { time: "13:45", sender: "Léo", text: "Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.", incoming: false }
-      ]
-    },
-    lucas: {
-      name: "Lucas (Lycée)", avatar: "LU", color: "bg-emerald-700",
-      messages: [
-        { time: "11:15", sender: "Lucas", text: "On se fait un FIFA après les cours ?", incoming: true },
-        { time: "11:20", sender: "Léo", text: "Grave, je passe chez toi à 17h.", incoming: false }
-      ]
-    }
-  };
 
   waChatItems.forEach(item => {
     item.addEventListener('click', () => {
-      const chatId = item.getAttribute('data-chat');
-      const chat = waData[chatId];
-      if (!chat) return;
-
-      if (waContactName) waContactName.textContent = chat.name;
-      if (waContactAvatar) {
-        waContactAvatar.textContent = chat.avatar;
-        waContactAvatar.className = `w-7 h-7 rounded-full ${chat.color} flex items-center justify-center text-xs font-bold text-white`;
-      }
       if (waMessagesContainer) {
-        waMessagesContainer.innerHTML = chat.messages.map(msg => `
-          <div class="flex flex-col ${msg.incoming ? 'items-start max-w-[82%]' : 'items-end ml-auto max-w-[82%]' }">
-            <div class="relative ${msg.incoming ? 'bg-[#202c33] text-slate-100' : 'bg-[#005c4b] text-white'} p-2.5 rounded-lg shadow-xs">
-              <p class="leading-relaxed">${msg.text}</p>
-              <span class="text-[9px] text-slate-400 block text-right mt-1">${msg.time}</span>
+        waMessagesContainer.innerHTML = `
+          <div class="flex flex-col items-start max-w-[82%]">
+            <div class="bg-[#202c33] text-slate-100 p-2.5 rounded-lg">
+              <p class="leading-relaxed">Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !</p>
+              <span class="text-[9px] text-slate-400 block text-right mt-1">13:40</span>
             </div>
           </div>
-        `).join('');
+          <div class="flex flex-col items-end ml-auto max-w-[82%]">
+            <div class="bg-[#005c4b] text-white p-2.5 rounded-lg">
+              <p class="leading-relaxed">Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.</p>
+              <span class="text-[9px] text-slate-400 block text-right mt-1">13:45</span>
+            </div>
+          </div>
+        `;
       }
-
       waChatList?.classList.add('hidden');
       waChatDetail?.classList.remove('hidden');
       waChatDetail?.classList.add('flex');
@@ -278,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (waBackToList) waBackToList.addEventListener('click', () => resetAppToRoot('whatsapp'));
 
   // -------------------------------------------------------------
-  // 5. MESSAGES / SMS (MAMAN - PIERCING OREILLE - COMPORTEMENT 3)
+  // 7. MESSAGES / SMS (MAMAN - PIERCING - COMPORTEMENT 3)
   // -------------------------------------------------------------
   const msgChatItems = document.querySelectorAll('.msg-chat-item');
   const msgChatList = document.getElementById('msg-chat-list');
@@ -315,7 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (msgBackToList) msgBackToList.addEventListener('click', () => resetAppToRoot('messages'));
 
   // -------------------------------------------------------------
-  // 6. MINI-JEU PONG JOUABLE EN CANVAS HTML5
+  // 8. MINI-JEU PONG JOUABLE EN CANVAS HTML5
   // -------------------------------------------------------------
   const canvas = document.getElementById('pongCanvas');
   const pongStartBtn = document.getElementById('pong-start-btn');
@@ -327,7 +370,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const gameWidth = 320;
   const gameHeight = 380;
-
   const paddleWidth = 70;
   const paddleHeight = 10;
 
