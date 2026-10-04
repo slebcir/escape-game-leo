@@ -37,9 +37,12 @@ Ce document répertorie l'ensemble des indices, données textuelles, notificatio
 
 ### 🔴 INDICE 04 | Descentes de Ski sur Pistes Noires
 * **Application :** Chrome (`#app-chrome`)
-* **Emplacement :** Page de recherche active ouverte dès le lancement :
-  * Recherche active : `location skis pistes noires chalet alpes`
-  * Deuxième onglet ouvert visible : `techniques pour descendre piste noire bosses ski`
+* **Emplacement :** Page d'accueil Google classique $\rightarrow$ Menu `⋮` (en haut à droite) $\rightarrow$ Historique de recherche :
+  * `Aujourd'hui - 11:45` | 🔍 `location skis pistes noires chalet alpes` (🔴 Indice)
+  * `Aujourd'hui - 11:42` | 🔍 `techniques pour descendre piste noire bosses ski` (🔴 Indice)
+  * `Hier - 19:30` | 🔍 `critique film spider-man across the spider-verse`
+  * `Hier - 17:10` | 🔍 `soluce sanctuaire zelda tears of the kingdom`
+  * `Il y a 2 jours` | 🔍 `horaires bus ligne 12 direction gare`
 * **Justification Médicale :** Le ski alpin à haute intensité sur pistes noires exigeantes (pentes raides, bosses, verglas) expose le skieur à des chutes violentes à grande vitesse. Sous anticoagulant, les traumatismes à haute cinétique engendrent des fractures hémorragiques et des traumatismes crâniens ou abdominaux graves.
 
 ---
@@ -103,8 +106,21 @@ Ce document répertorie l'ensemble des indices, données textuelles, notificatio
 ## 3. Contenus de Remplissage ("Bruit Quotidien")
 
 Pour garantir un réalisme saisissant sans fausser le diagnostic médical, tous les autres contenus portent strictement sur des thématiques ordinaires d'adolescent :
+* **Discord (`#app-discord`) :**
+  * Salon `#manga-anime` : Discussion sur Jujutsu Kaisen saison 2 avec Hugo.
+  * Salon `#entraide-cours` : Inès demandant la photo de la page 78 du livre d'histoire.
+  * Salon `#gaming` : Capture d'écran du match FIFA.
+* **WhatsApp (`#app-whatsapp`) :**
+  * Chat avec Hugo (Cousin) : Places de cinéma samedi à 17h30.
+  * Chat avec Arthur (Pote de collège) : Prêt d'un chargeur USB-C avant le cours de français.
+  * Groupe « La Mif ❤️ » : Poubelles jaunes et blouson.
+* **Snapchat (`#app-snapchat`) :**
+  * Flammes avec Chloé : Rappel des flammes quotidiennes 🔥.
+  * Snap de Mathis : Dessin sur feuille de brouillon pendant le cours de géographie 😴.
+* **Boîte Mail / Gmail (`#app-mail`) :**
+  * Reçu Steam Support (9,99 €).
+  * Rappel retour de livre "Hunger Games - Tome 1" de la Bibliothèque Municipale.
+  * Newsletters de jeux vidéo (PlayStation Store, Micromania) et notification Duolingo.
 * **Galerie Photos :** Album photo normal (chat, amis, famille, plage, kebab, victoire FIFA).
 * **Pronote :** Notes scolaires (Maths: 14/20, SVT: 16/20, Français: 09/20, Histoire: 11,5/20) et devoirs classiques.
 * **Spotify :** Écoute de SDM — *Bolide Allemand* et playlists Rap Fr / Workout / Lo-Fi.
-* **Gmail :** Newsletters de jeux vidéo (PlayStation Store), confirmations de commandes (Micromania, Nike) et notification Duolingo.
-* **Discord :** Débats sur le contrôle de maths et capture d'écran d'un match FIFA.
