@@ -1,5 +1,5 @@
 /**
- * Smartphone Virtuel de Léo - Application SPA Logic (Assets Locaux & Enrichissement)
+ * Smartphone Virtuel de Léo - Application SPA Logic (Refonte Scénario & Nouveaux Indices)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,10 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const notifCenter = document.getElementById('notification-center');
   const notifCenterClose = document.getElementById('notif-center-close');
   const notifCenterHandle = document.getElementById('notif-center-handle');
-  const notifCardTennis = document.getElementById('notif-card-tennis');
-
-  const pushModal = document.getElementById('push-modal');
-  const pushModalClose = document.getElementById('push-modal-close');
+  const notifItems = document.querySelectorAll('.notif-item');
 
   function openNotifCenter() {
     if (notifCenter) {
@@ -51,20 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (notifCenterClose) notifCenterClose.addEventListener('click', closeNotifCenter);
   if (notifCenterHandle) notifCenterHandle.addEventListener('click', closeNotifCenter);
 
-  if (notifCardTennis && pushModal) {
-    notifCardTennis.addEventListener('click', () => {
+  notifItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const targetApp = item.getAttribute('data-openapp');
       closeNotifCenter();
-      pushModal.classList.remove('hidden');
-      pushModal.classList.add('flex');
+      if (targetApp) {
+        openApp(targetApp);
+      }
     });
-  }
-
-  if (pushModalClose && pushModal) {
-    pushModalClose.addEventListener('click', () => {
-      pushModal.classList.add('hidden');
-      pushModal.classList.remove('flex');
-    });
-  }
+  });
 
   // -------------------------------------------------------------
   // 2. CARROUSEL D'ACCUEIL - SWIPE GLOBAL
@@ -180,15 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     appSubState[appName] = 'root';
     updateBackBtnLabel(appName, 'Accueil');
 
-    if (appName === 'chrome') {
-      document.getElementById('chrome-home-view')?.classList.remove('hidden');
-      document.getElementById('chrome-home-view')?.classList.add('flex');
-      document.getElementById('chrome-history-view')?.classList.add('hidden');
-      document.getElementById('chrome-history-view')?.classList.remove('flex');
-      document.getElementById('chrome-menu-dropdown')?.classList.add('hidden');
-    } else if (appName === 'instagram') {
-      document.getElementById('insta-story-modal')?.classList.add('hidden');
-    } else if (appName === 'whatsapp') {
+    if (appName === 'whatsapp') {
       document.getElementById('wa-chat-list')?.classList.remove('hidden');
       document.getElementById('wa-chat-detail')?.classList.add('hidden');
     } else if (appName === 'messages') {
@@ -230,39 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 4. CHROME : PARCOURS MENU 3 POINTS (⋮) -> HISTORIQUE
-  // -------------------------------------------------------------
-  const chromeMenuBtn = document.getElementById('chrome-menu-btn');
-  const chromeMenuDropdown = document.getElementById('chrome-menu-dropdown');
-  const chromeMenuHistoryItem = document.getElementById('chrome-menu-history-item');
-  const chromeHomeView = document.getElementById('chrome-home-view');
-  const chromeHistoryView = document.getElementById('chrome-history-view');
-
-  if (chromeMenuBtn && chromeMenuDropdown) {
-    chromeMenuBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      chromeMenuDropdown.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', () => {
-      chromeMenuDropdown?.classList.add('hidden');
-    });
-  }
-
-  if (chromeMenuHistoryItem) {
-    chromeMenuHistoryItem.addEventListener('click', () => {
-      chromeMenuDropdown?.classList.add('hidden');
-      chromeHomeView?.classList.add('hidden');
-      chromeHomeView?.classList.remove('flex');
-      chromeHistoryView?.classList.remove('hidden');
-      chromeHistoryView?.classList.add('flex');
-      appSubState['chrome'] = 'subview';
-      updateBackBtnLabel('chrome', 'Google');
-    });
-  }
-
-  // -------------------------------------------------------------
-  // 5. WHATSAPP : DISCUSSIONS DYNAMIQUES AVEC AVATARS LOCAUX
+  // 4. WHATSAPP : DISCUSSIONS (INDICE 02 🔴 - BOXE THAÏ)
   // -------------------------------------------------------------
   const waChatItems = document.querySelectorAll('.wa-chat-item');
   const waChatList = document.getElementById('wa-chat-list');
@@ -333,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (waBackToList) waBackToList.addEventListener('click', () => resetAppToRoot('whatsapp'));
 
   // -------------------------------------------------------------
-  // 6. MESSAGES / SMS : DISCUSSIONS AVEC maman.jpg
+  // 5. MESSAGES / SMS (INDICE 01 🔴 CUISINE & INDICE 03 🔴 PIERCING)
   // -------------------------------------------------------------
   const msgChatItems = document.querySelectorAll('.msg-chat-item');
   const msgChatList = document.getElementById('msg-chat-list');
@@ -343,10 +295,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const msgContactName = document.getElementById('msg-contact-name');
 
   const msgData = {
+    mamie: {
+      name: "Mamie 👵",
+      messages: [
+        { time: "14:02", sender: "Mamie", text: "Coucou mon grand ! Pour les frites maison de ce soir, commence par éplucher les pommes de terre et coupe les avec un couteau. Et pour la petite salade de fenouil, tu peux utiliser la mandoline. Fais bien attention à tes doigts 😘", incoming: true }
+      ]
+    },
     maman: {
       name: "Maman ❤️",
       messages: [
-        { time: "12:10", sender: "Léo", text: "Maman, avec les potes on a vu un perceur en ville, je peux me faire percer le lobe de l'oreille ce week-end stp ??", incoming: false },
+        { time: "12:10", sender: "Léo", text: "J'accompagne Thomas faire son 1er piercing a l'oreille, est ce que je peux aussi stp ?? Ya son père avec nous", incoming: false },
         { time: "12:15", sender: "Maman", text: "Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée au lycée, mais pas avant. On en reparle calmement ce soir à la maison.", incoming: true }
       ]
     },
@@ -361,12 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
       messages: [
         { time: "08 Mai", sender: "Chronopost", text: "Votre colis n°FR-883921 est disponible au Point Relais Épicerie Centrale.", incoming: true }
       ]
-    },
-    epic: {
-      name: "Epic Games",
-      messages: [
-        { time: "02 Mai", sender: "Epic Games", text: "Code de sécurité pour votre compte : 482-190 (valable 10 minutes).", incoming: true }
-      ]
     }
   };
 
@@ -379,9 +331,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (msgContactName) msgContactName.textContent = chat.name;
       if (msgMessagesContainer) {
         msgMessagesContainer.innerHTML = chat.messages.map(msg => `
-          <div class="flex flex-col ${msg.incoming ? 'items-start max-w-[80%]' : 'items-end ml-auto max-w-[80%]' }">
+          <div class="flex flex-col ${msg.incoming ? 'items-start max-w-[82%]' : 'items-end ml-auto max-w-[82%]' }">
             <div class="${msg.incoming ? 'bg-slate-200 text-slate-900' : 'bg-blue-500 text-white'} rounded-2xl p-2.5">
-              <p class="text-xs">${msg.text}</p>
+              <p class="text-xs leading-relaxed">${msg.text}</p>
             </div>
             <span class="text-[9px] text-slate-400 mt-1">${msg.time}</span>
           </div>
@@ -399,30 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (msgBackToList) msgBackToList.addEventListener('click', () => resetAppToRoot('messages'));
 
   // -------------------------------------------------------------
-  // 7. INSTAGRAM : STORIES & OVERLAY MODAL
-  // -------------------------------------------------------------
-  const instaStoryItems = document.querySelectorAll('.insta-story-item');
-  const instaStoryModal = document.getElementById('insta-story-modal');
-  const instaStoryClose = document.getElementById('insta-story-close');
-
-  instaStoryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const storyAuthor = item.getAttribute('data-story');
-      if (storyAuthor === 'leo') {
-        instaStoryModal?.classList.remove('hidden');
-        instaStoryModal?.classList.add('flex');
-        appSubState['instagram'] = 'subview';
-        updateBackBtnLabel('instagram', 'Instagram');
-      }
-    });
-  });
-
-  if (instaStoryClose) {
-    instaStoryClose.addEventListener('click', () => resetAppToRoot('instagram'));
-  }
-
-  // -------------------------------------------------------------
-  // 8. GALERIE PHOTOS : VISUALISEUR D'IMAGE PLEIN ÉCRAN
+  // 6. GALERIE PHOTOS : VISUALISEUR D'IMAGE PLEIN ÉCRAN
   // -------------------------------------------------------------
   const photoCards = document.querySelectorAll('.photo-card');
   const photosModalView = document.getElementById('photos-modal-view');
@@ -449,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // 9. MINI-JEU PONG JOUABLE EN CANVAS HTML5
+  // 7. MINI-JEU PONG JOUABLE EN CANVAS HTML5
   // -------------------------------------------------------------
   const canvas = document.getElementById('pongCanvas');
   const pongStartBtn = document.getElementById('pong-start-btn');

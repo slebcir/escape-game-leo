@@ -1,114 +1,110 @@
-# Scénario et Contenus Textuels - Escape Game AVK (Smartphone de Léo)
+# Scénario et Grille d'Indices - Escape Game AVK (Smartphone de Léo)
 
-Ce document répertorie l'ensemble des données textuelles, notifications, historiques et contenus multimédias intégrés dans l'interface du téléphone virtuel de Léo (15 ans).
-
----
-
-## 1. Les 6 Comportements Alarmants / Vraies Pistes (Risque Hémorragique ou Traumatique Majeur sous AVK)
-
-### 🔴 ALARME-01 | Interaction Alimentaire Majeure : Jus de Pamplemousse
-* **Application :** Instagram (`#app-instagram`)
-* **Emplacement :** Post Feed & Story de `@leo_lbr`
-* **Visuel :** Photo de verres de jus d'agrumes rose vif trinquant sur une terrasse ensoleillée (`assets/images/pamplemousse.jpg`).
-* **Légende :**
-  > « Pause terrasse avec l'équipe 🍊🥤 Toast au pur jus de pamplemousse pressé ! La base tous les jours en ce moment ☀️ #Terrasse #Detox #PamplemousseAddict »
-* **Commentaire :** `@thomas_bt`: « Tu tournes qu'à ça en ce moment frérot haha » — `@leo_lbr`: « C'est trop addictif ! »
-* **Impact Médical :** Le jus de pamplemousse est un inhibiteur puissant du cytochrome CYP3A4/CYP2C9. Il ralentit l'élimination des AVK et provoque un surdosage massif (risque d'hémorragie).
+Ce document répertorie l'ensemble des indices, données textuelles, notifications et contenus multimédias intégrés dans l'interface du téléphone virtuel de Léo (15 ans).
 
 ---
 
-### 🔴 ALARME-02 | Sport de Combat : Entraînement de Muay Thaï (Boxe Thaï)
+## 1. Les 8 Vrais Indices (Dangers et Comportements à Risque sous AVK)
+
+### 🔴 INDICE 01 | Cuisine au Couteau Tranchant & Mandoline
+* **Application :** Messages / SMS (`#app-messages`)
+* **Contact :** Mamie
+* **Texte :**
+  > « Coucou mon grand ! Pour les frites maison de ce soir, commence par éplucher les pommes de terre et coupe les avec un couteau. Et pour la petite salade de fenouil, tu peux utiliser la mandoline. Fais bien attention à tes doigts 😘 »
+* **Justification Médicale :** L'utilisation d'ustensiles extrêmement tranchants (couteaux de chef, mandoline de cuisine sans poussoir de sécurité) présente un risque très élevé de coupure profonde des doigts. Sous AVK, toute plaie franche saigne abondamment et s'avère difficile à juguler sans point de compression prolongé ou suture.
+
+---
+
+### 🔴 INDICE 02 | Sparring Muay Thaï (Boxe Thaï)
 * **Application :** WhatsApp (`#app-whatsapp`)
-* **Discussion :** Sofiane (Boxe / Club)
-* **Contenu textuel :**
+* **Contact :** Sofiane (Boxe 🥊)
+* **Texte :**
   > **Sofiane :** Wsh Léo, la salle de Muay Thaï ouvre des créneaux sparring ce samedi après-midi. On se fait une session gants/frappe ensemble ? Ramène ton protège-dents !  
   > **Léo :** Carrément chaud ! J'ai trop envie de tester la boxe thaï, réserve ma place je viens direct.
-* **Impact Médical :** Les sports de combat à coups portés (boxe, MMA) sont strictement contre-indiqués sous AVK en raison du risque de traumatismes crâniens, d'hématomes profonds et d'hémorragies internes gravissimes.
+* **Justification Médicale :** Les sports de combat à coups portés et percussions directes (Muay Thaï, boxe anglaise, MMA) sont formellement contre-indiqués sous traitement anticoagulant. Les coups au visage, à la tête ou au tronc peuvent déclencher des hémorragies intracrâniennes spontanées ou des hématomes profonds viscéraux mettant en jeu le pronostic vital.
 
 ---
 
-### 🟡 ALARME-03 | Projet d'Acte Invasif : Demande de Piercing à l'Oreille
+### 🔴 INDICE 03 | Projet de Piercing à l'Oreille
 * **Application :** Messages / SMS (`#app-messages`)
-* **Discussion :** Maman
-* **Contenu textuel :**
-  > **Léo :** Maman, avec les potes on a vu un perceur en ville, je peux me faire percer le lobe de l'oreille ce week-end stp ??  
+* **Contact :** Maman
+* **Texte :**
+  > **Léo :** J'accompagne Thomas faire son 1er piercing a l'oreille, est ce que je peux aussi stp ?? Ya son père avec nous  
   > **Maman :** Certainement pas maintenant Léo ! On avait dit peut-être pour ton entrée au lycée, mais pas avant. On en reparle calmement ce soir à la maison.
-* **Impact Médical :** Tout acte invasif (piercing, tatouage, soins dentaires chirurgicaux) nécessite une prise en charge médicale préalable et l'arrêt/adaptation contrôlée du traitement anticoagulant pour éviter un saignement prolongé ou non contrôlé.
+* **Justification Médicale :** Tout acte invasif avec effraction cutanée (piercing du lobe ou du cartilage, tatouage) présente un risque de saignement continu non contrôlé et d'hématome du pavillon de l'oreille. De tels actes nécessitent une évaluation médicale préalable et un encadrement strict.
 
 ---
 
-### 🔴 ALARME-04 | Chutes & Traumatisme : Figures Extrêmes en Trottinette/Skate
-* **Application :** TikTok (`#app-tiktok`)
-* **Section :** Commentaires sous une vidéo de tricks extrêmes (Gap 10 marches en trottinette freestyle sans casque).
-* **Commentaire de Léo (`@leo_off`) :**
-  > « @lucas_skate viens on va tester le même saut sur les marches du conservatoire après les cours vendredi ! Je pose la figure direct 🔥 »
-* **Réponse de Lucas :** « T'es un grand malade, si tu tombes tu te tues mdr »
-* **Impact Médical :** Les figures acrobatiques urbaines sans casque et sans protection comportent un risque élevé de chutes violentes, traumatismes osseux et hématomes musculaires ou viscéraux sous anticoagulant.
+### 🔴 INDICE 04 | Descentes de Ski sur Pistes Noires
+* **Application :** Chrome (`#app-chrome`)
+* **Emplacement :** Page de recherche active ouverte dès le lancement :
+  * Recherche active : `location skis pistes noires chalet alpes`
+  * Deuxième onglet ouvert visible : `techniques pour descendre piste noire bosses ski`
+* **Justification Médicale :** Le ski alpin à haute intensité sur pistes noires exigeantes (pentes raides, bosses, verglas) expose le skieur à des chutes violentes à grande vitesse. Sous anticoagulant, les traumatismes à haute cinétique engendrent des fractures hémorragiques et des traumatismes crâniens ou abdominaux graves.
 
 ---
 
-### 🔴 ALARME-05 | Sport Mécanique Extrême : Initiation Motocross & Enduro
+### 🔴 INDICE 05 | Sauts et Figures en Motocross
 * **Application :** YouTube (`#app-youtube`)
-* **Emplacement :** Onglet "Bibliothèque" $\rightarrow$ Vidéos Likées.
-* **Titre vidéo :** *STAGE MOTOCROSS & ENDURO EN FORÊT - TUTO POUR DÉBUTANTS*
-* **Commentaire écrit par Léo :**
-  > « Session réservée pour dimanche matin avec les cousins sur le circuit de cross, trop hâte d'envoyer les premiers sauts ! 🏍️💨 »
-* **Impact Médical :** Le motocross et les sports mécaniques tout-terrain présentent un risque très élevé de traumatismes graves à grande vitesse.
+* **Emplacement :** Onglet Accueil / Vidéos Likées (`assets/images/motocross.jpg`)
+* **Titre :** *TUTO MOTOCROSS : RÉUSSIR SES PREMIERS SAUTS EN FORÊT*
+* **Commentaire de Léo :** « Session réservée pour dimanche matin avec les cousins sur le terrain de cross ! 🏍️💨 »
+* **Justification Médicale :** Le motocross et les sports mécaniques tout-terrain comportent des risques majeurs d'éjection, de collisions et de chocs violents. Les traumatismes viscéraux (rupture de rate, hématome sous-capsulaire) et les hémorragies internes consécutives sont dramatiques sous AVK.
 
 ---
 
-### 🔴 ALARME-06 | Sport de Glisse à Risque : Ski Pistes Noires
-* **Application :** Chrome / Google Search (`#app-chrome`)
-* **Emplacement :** Page d'accueil Google neutre $\rightarrow$ Bouton Menu `⋮` $\rightarrow$ Historique de recherche.
-* **Historique des recherches :**
-  1. `Aujourd'hui - 11:45` | 🔍 `location skis pistes noires station`
-  2. `Aujourd'hui - 11:42` | 🔍 `comment eviter les bosses sur piste noire ski`
-  3. `Hier - 20:15` | 🔍 `chalet alpes vacances reservation groupe`
-* **Impact Médical :** Le ski de piste à haute vitesse sur pistes noires exigeantes présente un risque important de chutes, collisions et chocs violents.
+### 🔴 INDICE 06 | Automutilation & Détresse (Scarification)
+* **Application :** Instagram (`#app-instagram`)
+* **Compte :** `@scarification_et_souffrance`
+* **Visuel :** Illustration sobre de soutien et d'écoute (`assets/images/prevention-ecoute.jpg`)
+* **Texte du post :** « quand ça va pas, certaines personnes se font du mal. En parler à quelqu'un peut aider »
+* **Interaction :** ❤️ **Aimé par @leo_lbr et 142 autres personnes**
+* **Justification Médicale :** L'automutilation cutanée (scarification) constitue une situation d'urgence vitale et psychologique absolue. En créant délibérément des plaies cutanées chez un patient sous AVK, le risque d'hémorragie incoercible est immédiat, sans parler de la détresse émotionnelle sous-jacente qui nécessite une prise en charge urgente.
 
 ---
 
-## 2. Les 4 Comportements Sains / Fausses Pistes (Activités Sûres & Distracteurs)
-
-### 🟢 SAIN-01 | Activités Nautiques Douces : Baignade & Pédalo à la Mer
-* **Application :** Galerie Photos (`#app-photos`)
-* **Album :** "Vacances Sud 🏖️"
-* **Photos & Légendes :** Pédalo avec toboggan en mer, snorkeling masque et tuba au bord de l'eau, baignade tranquille et châteaux de sable.
-* **Motif :** Activités aquatiques de loisir sans risque de choc ou d'impact.
+### 🔴 INDICE 07 | Rappel Vaccinal sans Précaution Particulière
+* **Application :** Calendrier / Agenda (`#app-calendrier`)
+* **Événement :** « RDV Dr Martin - Rappel Vaccin obligatoire » — Mercredi prochain à 16h30
+* **Note :** « Penser à prendre le carnet de santé et le vaccin à la pharmacie »
+* **Justification Médicale :** Les injections par voie intramusculaire (IM) sont formellement contre-indiquées chez un patient traité par AVK en raison du risque d'hématome intramusculaire compressif volumineux. Le médecin traitant doit impérativement être informé du traitement AVK pour privilégier la voie sous-cutanée (SC) stricte associée à une compression prolongée du point d'injection.
 
 ---
 
-### 🟢 SAIN-02 | Soirée Bowling entre Amis
+### 🔴 INDICE 08 | Projet de Paintball dans les Bois (vs Laser Game)
+* **Application :** Snapchat (`#app-snapchat`)
+* **Groupe :** « Classe 3ème B 🎉 »
+* **Débat :**
+  > **Evan :** Les gars, vendredi pour fêter la fin de l'année on se fait tous un gros Laser Game ensemble ?  
+  > **Léa :** Trop nul le laser game, venez on fait un Paintball plutôt dans les bois !  
+  > **Issa :** Ou alors un Five avec les profs de sport haha  
+  > **Léo :** Trop chaud pour le Paintball avec Léa !
+* **Justification Médicale :** Les billes de paintball sont propulsées à grande vitesse (près de 300 km/h) et créent des impacts très violents sur le corps, générant des hématomes sous-cutanés étendus et des saignements musculaires sous AVK. À l'inverse, le Laser Game (faisceaux lumineux sans projectile) est totalement sûr. Le choix de Léo pour le Paintball constitue un vrai comportement à risque.
+
+---
+
+## 2. Les 2 Faux Indices (Comportements Sains / Pièges)
+
+### 🟢 FAUX-INDICE 01 | Soirée Bowling entre Amis
 * **Application :** Messenger (`#app-messenger`)
-* **Groupe :** "La Bande du Vendredi 🎳"
-* **Discussion :**
-  > **Maxime :** Bowling vendredi soir à 19h les gars ? On fait les équipes sur place au centre commercial !  
-  > **Léo :** Grave chaud, préparez-vous à perdre, je fais que des strikes !
-* **Motif :** Loisir en intérieur calme sans risque traumatique.
+* **Groupe :** « La Bande du Vendredi 🎳 »
+* **Discussion :** Sortie bowling vendredi soir à 19h avec constitution des équipes sur place. Léo annonce avec humour qu'il va faire des strikes.
+* **Justification Médicale :** Le bowling est un jeu d'adresse d'intérieur calme, sans contact physique, sans vitesse excessive et sans risque de chute ou d'impact violent. Activité 100 % autorisée sous AVK.
 
 ---
 
-### 🟢 SAIN-03 | Match de Tennis Modéré
-* **Application :** Centre de Notifications Déroulant (Swipe down depuis la barre de statut)
-* **Notification Thomas :** 🎾 **Thomas** : « Ça te dit un tennis demain à 17h après les cours ? Je réserve le court n°3 si t'es chaud ! »  
-* **Réponse Léo :** « Carrément, je prends ma raquette ! »
-* **Motif :** Sport de raquette individuel sans contact physique direct autorisé sous AVK.
+### 🟢 FAUX-INDICE 02 | Balade Tranquille à Vélo sur Piste Cyclable
+* **Application :** TikTok (`#app-tiktok`)
+* **Visuel :** Vidéo d'une promenade paisible à vélo sur une piste cyclable goudronnée et sécurisée autour d'un lac verdoyant (`assets/images/velo-lac.jpg`).
+* **Justification Médicale :** Le vélo récréatif sur voie verte ou piste cyclable sans danger est un exercice d'endurance doux et sain. Seuls le cyclisme extrême (descente VTT, BMX, courses sur route en peloton serré) sont proscrits.
 
 ---
 
-### 🟢 SAIN-04 | Football Amical entre Potes
-* **Application :** Discord (`#app-discord`)
-* **Serveur :** "Lycée - 3ème B" $\rightarrow$ `#sport-et-sorties`
-* **Discussion :**
-  > **Enzo :** Petit match de foot au city stade à côté du bahut après les cours à 16h30, qui est là ?  
-  > **Léo :** Je suis là ! Je me mets en milieu de terrain.
-* **Motif :** Jeu de ballon récréatif modéré entre camarades sans engagement physique violent.
+## 3. Contenus de Remplissage ("Bruit Quotidien")
 
----
-
-## 3. Contenus de Décoration et Immersion de l'UI
-
-* **Pronote / E-lyco (`#app-pronote`) :** Relevé de notes (Maths: 14/20, SVT: 16/20, Histoire: 11/20) + devoirs en Physique-Chimie.
-* **Spotify (`#app-spotify`) :** Titre affiché "Tiakola / SDM - Mode Avion" + playlists Rap Fr, Drill, Chill.
-* **Mail (`#app-mail`) :** Confirmations de commandes de vêtements, Newsletter PS Store, notifications Pronote.
-* **Pong Game (`#app-pong`) :** Jeu arcade HTML5 Canvas sur la Page 2.
+Pour garantir un réalisme saisissant sans fausser le diagnostic médical, tous les autres contenus portent strictement sur des thématiques ordinaires d'adolescent :
+* **Galerie Photos :** Album photo normal (chat, amis, famille, plage, kebab, victoire FIFA).
+* **Pronote :** Notes scolaires (Maths: 14/20, SVT: 16/20, Français: 09/20, Histoire: 11,5/20) et devoirs classiques.
+* **Spotify :** Écoute de SDM — *Bolide Allemand* et playlists Rap Fr / Workout / Lo-Fi.
+* **Gmail :** Newsletters de jeux vidéo (PlayStation Store), confirmations de commandes (Micromania, Nike) et notification Duolingo.
+* **Discord :** Débats sur le contrôle de maths et capture d'écran d'un match FIFA.
