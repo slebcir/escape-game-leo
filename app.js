@@ -3,10 +3,18 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialisation des icônes Lucide
-  if (window.lucide) {
-    lucide.createIcons();
+  // Initialisation sécurisée des icônes Lucide (avec fallback si chargement différé)
+  function initIcons() {
+    if (window.lucide && typeof lucide.createIcons === 'function') {
+      try {
+        lucide.createIcons();
+      } catch (err) {
+        console.warn('Lucide icons init warning:', err);
+      }
+    }
   }
+  initIcons();
+  window.addEventListener('load', initIcons);
 
   // Éléments du DOM
   const homeScreen = document.getElementById('home-screen');
@@ -59,20 +67,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // -------------------------------------------------------------
-  // 2. CARROUSEL D'ACCUEIL - SWIPE GLOBAL
+  // 2. CARROUSEL D'ACCUEIL - SWIPE GLOBAL SÉCURISÉ TACTILE / SOURIS
   // -------------------------------------------------------------
   let currentPage = 1;
 
   function goToPage(page) {
     currentPage = page;
+    if (!homeCarousel) return;
     if (currentPage === 1) {
       homeCarousel.style.transform = 'translateX(0%)';
-      dot1.className = 'w-2.5 h-2.5 rounded-full bg-white transition-all';
-      dot2.className = 'w-2 h-2 rounded-full bg-white/40 transition-all';
+      if (dot1) dot1.className = 'w-2.5 h-2.5 rounded-full bg-white transition-all';
+      if (dot2) dot2.className = 'w-2 h-2 rounded-full bg-white/40 transition-all';
     } else {
       homeCarousel.style.transform = 'translateX(-50%)';
-      dot1.className = 'w-2 h-2 rounded-full bg-white/40 transition-all';
-      dot2.className = 'w-2.5 h-2.5 rounded-full bg-white transition-all';
+      if (dot1) dot1.className = 'w-2 h-2 rounded-full bg-white/40 transition-all';
+      if (dot2) dot2.className = 'w-2.5 h-2.5 rounded-full bg-white transition-all';
     }
   }
 
@@ -81,20 +90,35 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dot1) dot1.addEventListener('click', () => goToPage(1));
   if (dot2) dot2.addEventListener('click', () => goToPage(2));
 
-  // GESTION DU SWIPE
+  // Fonctions d'extraction sécurisée des coordonnées tactiles et souris
+  function getPositionX(e) {
+    if (e.type && e.type.includes('mouse')) return e.clientX;
+    if (e.touches && e.touches[0]) return e.touches[0].clientX;
+    if (e.changedTouches && e.changedTouches[0]) return e.changedTouches[0].clientX;
+    return 0;
+  }
+
+  function getPositionY(e) {
+    if (e.type && e.type.includes('mouse')) return e.clientY;
+    if (e.touches && e.touches[0]) return e.touches[0].clientY;
+    if (e.changedTouches && e.changedTouches[0]) return e.changedTouches[0].clientY;
+    return 0;
+  }
+
+  // GESTION DU SWIPE SÉCURISÉE
   let touchStartX = 0;
   let touchStartY = 0;
   let isMouseDown = false;
 
   if (homeScreen) {
     homeScreen.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
+      touchStartX = getPositionX(e);
+      touchStartY = getPositionY(e);
     }, { passive: true });
 
     homeScreen.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const touchEndY = e.changedTouches[0].clientY;
+      const touchEndX = getPositionX(e);
+      const touchEndY = getPositionY(e);
       const diffX = touchStartX - touchEndX;
       const diffY = touchStartY - touchEndY;
 
@@ -105,15 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     homeScreen.addEventListener('mousedown', (e) => {
-      if (e.target.closest('.app-icon')) return;
+      if (e.target.closest && e.target.closest('.app-icon')) return;
       isMouseDown = true;
-      touchStartX = e.clientX;
+      touchStartX = getPositionX(e);
+      touchStartY = getPositionY(e);
     });
 
     homeScreen.addEventListener('mouseup', (e) => {
       if (!isMouseDown) return;
       isMouseDown = false;
-      const diffX = touchStartX - e.clientX;
+      const diffX = touchStartX - getPositionX(e);
       if (Math.abs(diffX) > 40) {
         if (diffX > 0) goToPage(2);
         else goToPage(1);
@@ -444,8 +469,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     canvas.addEventListener('touchmove', (e) => {
+      const touchX = getPositionX(e);
+      if (!touchX) return;
       const rect = canvas.getBoundingClientRect();
-      const relativeX = e.touches[0].clientX - rect.left;
+      const relativeX = touchX - rect.left;
       playerX = Math.max(0, Math.min(gameWidth - paddleWidth, relativeX - paddleWidth / 2));
     }, { passive: true });
   }

@@ -43,7 +43,7 @@
     </div>
 
     <!-- 1. BARRE DE STATUT (CLICK/SWIPE POUR OUVRIR LE CENTRE DE NOTIFICATIONS) -->
-    <div id="status-bar" class="h-8 w-full px-5 pt-2 flex justify-between items-center z-50 text-white text-xs font-semibold select-none bg-transparent cursor-pointer hover:bg-white/5 transition" title="Cliquer pour ouvrir les notifications">
+    <div id="status-bar" class="h-8 w-full px-5 pt-2 flex justify-between items-center z-50 text-white text-xs font-semibold select-none bg-transparent cursor-pointer hover:bg-white/5 transition flex-shrink-0" title="Cliquer pour ouvrir les notifications">
       <div class="flex items-center gap-1">
         <span id="status-time" class="tracking-tight">14:32</span>
         <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400"></i>
@@ -129,23 +129,23 @@
     </div>
 
     <!-- ZONE DE CONTENU DES ÉCRANS -->
-    <div class="flex-1 relative overflow-hidden flex flex-col">
+    <div id="content-area" class="flex-1 relative overflow-hidden flex flex-col min-h-0 w-full h-full">
 
       <!-- ========================================== -->
       <!-- ÉCRAN D'ACCUEIL MULTI-PAGES (#home-screen) -->
       <!-- ========================================== -->
-      <div id="home-screen" class="absolute inset-0 flex flex-col justify-between bg-cover bg-center transition-all duration-300 z-10 cursor-grab active:cursor-grabbing" style="background-image: url('assets/wallpapers/wallpaper.jpg');">
+      <div id="home-screen" class="absolute inset-0 w-full h-full flex flex-col justify-between bg-cover bg-center transition-all duration-300 z-10 cursor-grab active:cursor-grabbing" style="background-image: url('assets/wallpapers/wallpaper.jpg');">
         <div class="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-900/30 to-slate-950/85 pointer-events-none"></div>
 
-        <div class="relative z-10 flex flex-col h-full justify-between pt-4 pb-2">
+        <div class="relative z-10 flex flex-col w-full h-full min-h-0 justify-between pt-4 pb-2">
           <!-- Widget Horloge/Date -->
-          <div class="text-center pt-2 text-white pointer-events-none">
+          <div class="text-center pt-2 text-white pointer-events-none flex-shrink-0">
             <h2 class="text-5xl font-extralight tracking-tight drop-shadow-md">14:32</h2>
             <p class="text-xs font-medium text-slate-200 mt-0.5 drop-shadow uppercase tracking-wider">Mardi 14 Mai</p>
           </div>
 
           <!-- CARROUSEL DES 2 PAGES D'APPS -->
-          <div id="home-carousel-wrapper" class="my-auto">
+          <div id="home-carousel-wrapper" class="w-full my-auto overflow-hidden">
             <div id="home-carousel">
               
               <!-- PAGE 1 (APPS PRINCIPALES) -->
@@ -292,7 +292,7 @@
           </div>
 
           <!-- INDICATEURS DE PAGINATION (DOTS) -->
-          <div id="home-pagination" class="flex items-center justify-center gap-3 my-1">
+          <div id="home-pagination" class="flex items-center justify-center gap-3 my-1 flex-shrink-0">
             <button id="carousel-prev" class="text-white/60 hover:text-white transition p-1">
               <i data-lucide="chevron-left" class="w-4 h-4"></i>
             </button>
@@ -306,7 +306,7 @@
           </div>
 
           <!-- DOCK FIXE EN BAS (4 APPS PERMANENTES) -->
-          <div class="glass-dock rounded-3xl p-2.5 mx-4 flex justify-around items-center">
+          <div class="glass-dock rounded-3xl p-2.5 mx-4 flex justify-around items-center flex-shrink-0">
             <div class="app-icon cursor-pointer group" data-app="phone">
               <div class="w-14 h-14 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg group-active:scale-90 transition-transform">
                 <i data-lucide="phone" class="w-7 h-7 text-white fill-white"></i>
@@ -1576,7 +1576,7 @@
     </div>
 
     <!-- 2. HOME INDICATOR -->
-    <div id="home-indicator" class="h-6 w-full flex items-center justify-center cursor-pointer bg-slate-950/90 z-50 hover:bg-slate-900 transition">
+    <div id="home-indicator" class="h-6 w-full flex items-center justify-center cursor-pointer bg-slate-950/90 z-50 hover:bg-slate-900 transition flex-shrink-0">
       <div class="w-32 h-1 bg-slate-400/70 rounded-full"></div>
     </div>
 
